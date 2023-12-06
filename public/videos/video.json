@@ -1,24 +1,16 @@
 {
-  "kind": "youtube#searchListResponse",
-  "etag": "Mf9mspiz2Ys6vrdqINLd9vws1mQ",
-  "regionCode": "KR",
-  "pageInfo": {
-    "totalResults": 1,
-    "resultsPerPage": 1
-  },
+  "kind": "youtube#videoListResponse",
+  "etag": "dOG5id42YNjpaRWV6tfFJq3xnhY",
   "items": [
     {
-      "kind": "youtube#searchResult",
-      "etag": "U5dqkUK70sqGLcjkX7MmUEb2ITY",
-      "id": {
-        "kind": "youtube#video",
-        "videoId": "Zak0hAAsPfA"
-      },
+      "kind": "youtube#video",
+      "etag": "4OUC1-Wo4yTfEJDB4iNHi8cDtFU",
+      "id": "Zak0hAAsPfA",
       "snippet": {
         "publishedAt": "2022-07-03T08:00:25Z",
         "channelId": "UCCIOK_muw3wg0vWEAkBueAA",
         "title": "도파민을 성공의 무기로 사용하는 법 | 도파민네이션 | 자기계발 | 동기부여",
-        "description": "100% 내돈내산 리뷰 콘텐츠입니다. 출판사로부터 어떠한 대가도 지급받지 않았습니다! 책 구매 링크(제휴마케팅 활동의 일환으로, ...",
+        "description": "* 100% 내돈내산 리뷰 콘텐츠입니다. 출판사로부터 어떠한 대가도 지급받지  않았습니다!\n\n책 구매 링크(제휴마케팅 활동의 일환으로, 제게 소정의 수익이 발생합니다.)\n쿠팡: https://link.coupang.com/a/ryDPT\n예스24: https://app.ac/KEPDaPS53\n인터파크: https://app.ac/Gjr23Ma83\n\n각자의 이유로 고통받는 우리들은 쾌락을 추구합니다.\n술, 담배, 마약, 인스타그램, 유튜브, 음란물, 자위행위 등. \n그런데, 이런 쾌락을 추구할수록 우리는 더욱 고통스러워집니다.\n그 이유는 무엇일까요? 어떻게 해야 고통 없이 쾌락을 누릴 수 있을까요?\n\n이 모든 비밀은 욕망과 쾌락의 지휘자 '도파민'에 있습니다.\n우리 성공을 위해 도파민을 활용하는 법, '도파민네이션'을 통해 만나보세요.",
         "thumbnails": {
           "default": {
             "url": "https://i.ytimg.com/vi/Zak0hAAsPfA/default.jpg",
@@ -34,12 +26,56 @@
             "url": "https://i.ytimg.com/vi/Zak0hAAsPfA/hqdefault.jpg",
             "width": 480,
             "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/Zak0hAAsPfA/sddefault.jpg",
+            "width": 640,
+            "height": 480
           }
         },
         "channelTitle": "북토크",
+        "tags": [
+          "도파민네이션",
+          "성공하는법",
+          "도파민",
+          "고통",
+          "성공",
+          "자기계발",
+          "좋은책추천",
+          "자기계발서",
+          "동기부여",
+          "동기부여 영상",
+          "베스트셀러",
+          "책추천",
+          "북튜버",
+          "북토크"
+        ],
+        "categoryId": "22",
         "liveBroadcastContent": "none",
-        "publishTime": "2022-07-03T08:00:25Z"
+        "localized": {
+          "title": "도파민을 성공의 무기로 사용하는 법 | 도파민네이션 | 자기계발 | 동기부여",
+          "description": "* 100% 내돈내산 리뷰 콘텐츠입니다. 출판사로부터 어떠한 대가도 지급받지  않았습니다!\n\n책 구매 링크(제휴마케팅 활동의 일환으로, 제게 소정의 수익이 발생합니다.)\n쿠팡: https://link.coupang.com/a/ryDPT\n예스24: https://app.ac/KEPDaPS53\n인터파크: https://app.ac/Gjr23Ma83\n\n각자의 이유로 고통받는 우리들은 쾌락을 추구합니다.\n술, 담배, 마약, 인스타그램, 유튜브, 음란물, 자위행위 등. \n그런데, 이런 쾌락을 추구할수록 우리는 더욱 고통스러워집니다.\n그 이유는 무엇일까요? 어떻게 해야 고통 없이 쾌락을 누릴 수 있을까요?\n\n이 모든 비밀은 욕망과 쾌락의 지휘자 '도파민'에 있습니다.\n우리 성공을 위해 도파민을 활용하는 법, '도파민네이션'을 통해 만나보세요."
+        }
+      },
+      "contentDetails": {
+        "duration": "PT8M2S",
+        "dimension": "2d",
+        "definition": "hd",
+        "caption": "false",
+        "licensedContent": true,
+        "contentRating": {},
+        "projection": "rectangular"
+      },
+      "statistics": {
+        "viewCount": "230990",
+        "likeCount": "9240",
+        "favoriteCount": "0",
+        "commentCount": "289"
       }
     }
-  ]
+  ],
+  "pageInfo": {
+    "totalResults": 1,
+    "resultsPerPage": 1
+  }
 }
