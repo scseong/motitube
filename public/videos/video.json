@@ -1,0 +1,45 @@
+{
+  "kind": "youtube#searchListResponse",
+  "etag": "Mf9mspiz2Ys6vrdqINLd9vws1mQ",
+  "regionCode": "KR",
+  "pageInfo": {
+    "totalResults": 1,
+    "resultsPerPage": 1
+  },
+  "items": [
+    {
+      "kind": "youtube#searchResult",
+      "etag": "U5dqkUK70sqGLcjkX7MmUEb2ITY",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "Zak0hAAsPfA"
+      },
+      "snippet": {
+        "publishedAt": "2022-07-03T08:00:25Z",
+        "channelId": "UCCIOK_muw3wg0vWEAkBueAA",
+        "title": "도파민을 성공의 무기로 사용하는 법 | 도파민네이션 | 자기계발 | 동기부여",
+        "description": "100% 내돈내산 리뷰 콘텐츠입니다. 출판사로부터 어떠한 대가도 지급받지 않았습니다! 책 구매 링크(제휴마케팅 활동의 일환으로, ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Zak0hAAsPfA/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Zak0hAAsPfA/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Zak0hAAsPfA/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "북토크",
+        "liveBroadcastContent": "none",
+        "publishTime": "2022-07-03T08:00:25Z"
+      }
+    }
+  ]
+}
