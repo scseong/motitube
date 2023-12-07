@@ -1,7 +1,30 @@
 import { createGlobalStyle } from 'styled-components';
+import Regular from 'assets/fonts/Roboto-Regular.woff2';
+import Bold from 'assets/fonts/Roboto-Bold.woff2';
+import Black from 'assets/fonts/Roboto-Black.woff2';
 
 const GlobalStyles = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+@font-face{
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	src: url(${Regular}) format('woff2')
+}
+
+@font-face{
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 700;
+	src: url(${Bold}) format('woff2')
+}
+
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 900;
+	src: url(${Black}) format('woff2')
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -31,7 +54,7 @@ body {
 	background-color: black;
 	font-size: 16px;
 	line-height: 1;
-	font-family: 'Nanum Myeongjo', serif;
+	/* font-family: 'Roboto', sans-serif; */
 	color: white;
 }
 ol, ul, li {
@@ -56,6 +79,7 @@ a {
 input, button, textarea{
 	background: transparent;
     border: none;
+	font-family: 'Roboto', sans-serif;
 	color: inherit;
 	outline: none;
 } 
