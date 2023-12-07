@@ -1,5 +1,5 @@
 import React from 'react';
-import { StChannelContainer, StChannelInfo, StChannelLogo } from './styles';
+import { StChannelContainer, StChannelLogo } from './styles';
 
 export default function YoutubeChannel({ name, channelId }) {
   return (
@@ -10,9 +10,9 @@ export default function YoutubeChannel({ name, channelId }) {
           alt="채널 로고"
         />
       </StChannelLogo>
-      <StChannelInfo>
+      <div>
         <h3>{name}</h3>
-      </StChannelInfo>
+      </div>
     </StChannelContainer>
   );
 }

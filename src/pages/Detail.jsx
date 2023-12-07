@@ -22,10 +22,19 @@ const StDetailWrapper = styled.div`
   gap: 1rem;
 
   & > section:first-child {
-    flex-basis: 70%;
+    flex-basis: 70vw;
   }
 
   & > section:last-child {
-    flex-basis: 30%;
+    flex-basis: 30vw;
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    flex-direction: column;
+
+    & > section {
+      flex-basis: 100% !important;
+    }
   }
 `;

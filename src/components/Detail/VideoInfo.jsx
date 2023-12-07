@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import YoutubeChannel from 'components/Channel/YoutubeChannel';
-import styled from 'styled-components';
+import { StMovieInfo } from './styles';
 
 export default function VideoInfo() {
   const [data, setData] = useState('');
@@ -35,33 +35,3 @@ export default function VideoInfo() {
     </StMovieInfo>
   );
 }
-
-const StMovieInfo = styled.div`
-  margin-top: 1rem;
-
-  h2 {
-    font-size: 1.4rem;
-    line-height: 2rem;
-    font-weight: 700;
-    letter-spacing: -2px;
-    word-break: break-word;
-  }
-
-  & > div {
-    margin: 8px 0;
-  }
-
-  pre {
-    // TODO: 더보기
-    padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    font-size: 0.9rem;
-    line-height: 1.2rem;
-    cursor: pointer;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-  }
-`;
