@@ -49,19 +49,19 @@ export default function Register() {
   const errorMsg = (code) => {
     switch (code) {
       case 'auth/user-not-found' || 'auth/wrong-password':
-        return '이메일 또는 비밀번호가 일치하지 않습니다.';
+        return '이메일 또는 비밀번호가 일치하지 않습니다';
       case 'auth/email-already-in-use':
-        return '이미 사용 중인 이메일입니다.';
+        return '이미 사용 중인 이메일입니다';
       case 'auth/weak-password':
-        return '비밀번호는 6자 이상이어야 합니다.';
+        return '비밀번호는 6자 이상이어야 합니다';
       case 'auth/network-request-failed':
-        return '네트워크 연결에 실패 하였습니다.';
+        return '네트워크 연결에 실패 하였습니다';
       case 'auth/invalid-email':
-        return '잘못된 이메일 형식입니다.';
+        return '잘못된 이메일 형식입니다';
       case 'auth/internal-error':
-        return '잘못된 요청입니다.';
+        return '잘못된 요청입니다';
       default:
-        return '로그인에 실패 하였습니다.';
+        return '로그인에 실패 하였습니다';
     }
   };
 
@@ -83,7 +83,7 @@ export default function Register() {
         displayName: inputs.nickname,
         photoURL: defaultPhotoUrl
       });
-      toast.success('회원가입 성공!');
+      toast.success('회원가입이 되었습니다!');
       navigate('/login');
     } catch (error) {
       toast.error(errorMsg(error.code));
@@ -106,23 +106,23 @@ export default function Register() {
       <Form>
         <h1>회원가입</h1>
         <input
-          type="email"
-          placeholder="이메일"
           name="email"
+          placeholder="이메일"
+          type="email"
           value={inputs.email}
           onChange={changeInputs}
         />
         <input
-          type="text"
-          placeholder="닉네임"
           name="nickname"
+          placeholder="닉네임"
+          type="text"
           value={inputs.nickname}
           onChange={changeInputs}
         />
         <input
-          type="password"
-          placeholder="비밀번호"
           name="password"
+          placeholder="비밀번호"
+          type="password"
           value={inputs.password}
           onChange={changeInputs}
         />

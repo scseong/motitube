@@ -17,7 +17,6 @@ const Login = () => {
     password: ''
   });
 
-  // input 변경
   const changeInputs = (e) => {
     setInputs({
       ...inputs,
@@ -25,7 +24,6 @@ const Login = () => {
     });
   };
 
-  // input 비우기
   const clearInputs = () => {
     setInputs({
       email: '',
@@ -33,15 +31,12 @@ const Login = () => {
     });
   };
 
-  // 유효성 검사
   const checkInputs = () => {
-    // 빈칸
     if (inputs.email.trim().length === 0 || inputs.email.trim().length === 0) {
-      toast.error('이메일과 비밀번호를 모두 입력해주세요');
+      toast.error('이메일과 비밀번호 모두 입력해주세요');
       clearInputs();
       return;
     }
-    // 이메일형식이 아닐 때
     if (!inputs.email.includes('@')) {
       toast.error('올바른 이메일 형식을 입력해주세요');
       clearInputs();
@@ -56,7 +51,7 @@ const Login = () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, inputs.email, inputs.password);
       console.log(userCredential.user.accessToken);
-      toast.success('로그인 성공!');
+      toast.success('로그인 되었습니다!');
       localStorage.setItem('accessToken', userCredential.user.accessToken);
       dispatch(login(userCredential.user));
       navigate('/');
@@ -71,7 +66,7 @@ const Login = () => {
     const provider = new GoogleAuthProvider();
     try {
       const userCredential = await signInWithPopup(auth, provider);
-      toast.success('로그인 성공!');
+      toast.success('로그인 되었습니다!');
       localStorage.setItem('accessToken', userCredential.user.accessToken);
       navigate('/');
       dispatch(login(userCredential.user));
