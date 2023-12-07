@@ -54,9 +54,9 @@ a {
     color: inherit;
 }  
 input, button, textarea{
-	font-size: 16px;
-    background: inherit;
+	background: transparent;
     border: none;
+	color: inherit;
 	outline: none;
 } 
 * { 
