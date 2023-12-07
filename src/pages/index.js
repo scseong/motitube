@@ -1,7 +1,9 @@
 import Home from './Home';
 import Detail from './Detail';
-import Login from './Login';
+import Register from './Register';
 import Profile from './Profile';
 import Write from './Write';
+import Login from './Login';
 
-export { Home, Detail, Login, Profile, Write };
+export { Home, Detail, Register, Profile, Write, Login };
+
