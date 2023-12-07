@@ -3,12 +3,17 @@ import styled from 'styled-components';
 import { addDoc, collection, getDocs } from 'firebase/firestore';
 import { db } from 'shared/firebase';
 import useInput from 'hooks/useInput';
+import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Write() {
   const { value: url, onChange: handleUrlChange } = useInput();
   const { value: title, onChange: handleTitleChange } = useInput();
   const { value: content, onChange: handleContentChange } = useInput();
   const { value: tag, onChange: handleSelect } = useInput('성공');
+  const navigate = useNavigate();
 
   const selectList = [
     { value: 'success', name: '성공' },
@@ -17,6 +22,17 @@ export default function Write() {
     { value: 'relationships', name: '인간관계' },
     { value: 'etc', name: '기타' }
   ];
+
+  // Date format
+  const formattedDate = () =>
+    new Date().toLocaleDateString('ko', {
+      year: '2-digit',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
 
   // firebase 데이터가져오기
   useEffect(() => {
@@ -36,48 +52,67 @@ export default function Write() {
   // firebase에 데이터 추가
   const addPost = async (e) => {
     e.preventDefault();
-    const newPost = { url, title, content, tag };
+    if (!url) {
+      return toast.error('url을 입력해주세요.');
+    } else if (!title) {
+      return toast.error('제목을 입력해주세요.');
+    } else if (!content) {
+      return toast.error('내용을 입력해주세요.');
+    }
+    const newPost = {
+      url,
+      title,
+      content,
+      tag,
+      id: uuidv4(),
+      timestamp: formattedDate(Date.now())
+    };
     await addDoc(collection(db, 'post'), newPost);
+    alert('게시물이 등록되었습니다.');
+    navigate('/');
   };
 
   return (
-    <StDiv>
-      <StForm onSubmit={addPost}>
-        <StButtonDiv>
-          <StSelect value={tag} onChange={handleSelect}>
-            {selectList.map((item) => {
-              return (
-                <option value={item.value} key={item.value}>
-                  {item.name}
-                </option>
-              );
-            })}
-          </StSelect>
-          <StButton type="submit">등록하기</StButton>
-        </StButtonDiv>
+    <>
+      <ToastContainer />
+      <StDiv>
+        <StForm onSubmit={addPost}>
+          <StButtonDiv>
+            <StSelect value={tag} onChange={handleSelect}>
+              {selectList.map((item) => {
+                return (
+                  <option value={item.value} key={item.value}>
+                    {item.name}
+                  </option>
+                );
+              })}
+            </StSelect>
+            <StButton type="submit">등록하기</StButton>
+          </StButtonDiv>
 
-        <StInputDiv>
-          <StUrlTitleInput
-            type="url"
-            value={url}
-            placeholder="URL을 입력하세요."
-            onChange={handleUrlChange}
-          />
-          <StUrlTitleInput
-            type="text"
-            value={title}
-            placeholder="제목을 입력하세요."
-            onChange={handleTitleChange}
-          />
-          <StContentTextarea
-            type="text"
-            value={content}
-            placeholder="내용을 입력하세요."
-            onChange={handleContentChange}
-          />
-        </StInputDiv>
-      </StForm>
-    </StDiv>
+          <StInputDiv>
+            <StUrlTitleInput
+              type="url"
+              value={url}
+              placeholder="URL을 입력하세요."
+              onChange={handleUrlChange}
+            />
+            <StUrlTitleInput
+              type="text"
+              value={title}
+              placeholder="제목을 입력하세요."
+              onChange={handleTitleChange}
+            />
+            <StContentTextarea
+              type="text"
+              value={content}
+              placeholder="내용을 입력하세요."
+              onChange={handleContentChange}
+            />
+          </StInputDiv>
+        </StForm>
+      </StDiv>
+    </>
   );
 }
 
