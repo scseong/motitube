@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   StDiv,
   StForm,
@@ -10,7 +10,7 @@ import {
   StContentTextarea
 } from './styles';
 import { formattedDate } from 'util/date';
-import { addDoc, collection, getDocs } from 'firebase/firestore';
+import { addDoc, collection } from 'firebase/firestore';
 import { db } from 'shared/firebase';
 import useInput from 'hooks/useInput';
 import { v4 as uuidv4 } from 'uuid';
@@ -31,21 +31,6 @@ export default function Post() {
     { value: 'relationships', name: '인간관계' },
     { value: 'etc', name: '기타' }
   ];
-
-  // firebase 데이터가져오기
-  useEffect(() => {
-    const fetchData = async () => {
-      const querySnapShot = await getDocs(collection(db, 'post'));
-      querySnapShot.forEach((doc) => {
-        const data = {
-          id: doc.id,
-          ...doc.data()
-        };
-        console.log(data);
-      });
-    };
-    fetchData();
-  }, []);
 
   // firebase에 데이터 추가
   const addPost = async (e) => {
