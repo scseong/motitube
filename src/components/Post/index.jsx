@@ -63,7 +63,11 @@ export default function Post() {
       content,
       tag,
       id: uuidv4(),
-      timestamp: formattedDate(Date.now())
+      timestamp: formattedDate(Date.now()),
+      avatar: 'https://example.com/avatar/john_doe.jpg',
+      likes: 42,
+      userId: 'qwer123',
+      userName: '우공이산'
     };
     await addDoc(collection(db, 'post'), newPost);
     alert('게시물이 등록되었습니다.');
