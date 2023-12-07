@@ -7,30 +7,14 @@ import {
   signInWithEmailAndPassword,
   signOut,
   GoogleAuthProvider,
-  signInWithPopup,
-  getAuth
+  signInWithPopup
 } from 'firebase/auth';
 import styled from 'styled-components';
 
-function Login() {
+export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
-
-  const provider = new GoogleAuthProvider();
-  const auth = getAuth();
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      const user = result.user;
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      const email = error.customData.email;
-      const credential = GoogleAuthProvider.credentialFromError(error);
-    });
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -141,6 +125,4 @@ const StBtn = styled.button`
   padding: 10px;
   margin-top: 10px;
 `;
-
-export default Login;
 
