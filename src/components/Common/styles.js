@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+
+
+export const StMain = styled.main`
+  min-height: ${(props) => props.theme.mainHeight};
+`;
+// header.jsx
 export const StHeader = styled.header`
   display: flex;
   align-items: center;
@@ -7,10 +13,6 @@ export const StHeader = styled.header`
   height: ${(props) => props.theme.headerHeight};
   background-color: ${(props) => props.theme.primaryColor};
   color: black;
-`;
-
-export const StMain = styled.main`
-  min-height: ${(props) => props.theme.mainHeight};
 `;
 
 export const StLogo = styled.img`
@@ -68,3 +70,4 @@ export const SearchImage = styled.img`
   width: 20px;
   height: 20px;
 `;
+
