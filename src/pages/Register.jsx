@@ -83,7 +83,6 @@ export default function Register() {
         displayName: inputs.nickname,
         photoURL: defaultPhotoUrl
       });
-      console.log(userCredential);
       toast.success('회원가입 성공!');
       navigate('/login');
     } catch (error) {

@@ -59,7 +59,6 @@ const Login = () => {
       toast.success('로그인 성공!');
       localStorage.setItem('accessToken', userCredential.user.accessToken);
       dispatch(login(userCredential.user));
-      console.log(2);
       navigate('/');
     } catch (error) {
       console.error(error);
