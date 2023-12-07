@@ -65,7 +65,6 @@ export default function Register() {
     }
   };
 
-  // 회원가입
   const registerUser = async (e) => {
     e.preventDefault();
 
