@@ -15,8 +15,7 @@ import { db } from 'shared/firebase';
 import useInput from 'hooks/useInput';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 export default function Post() {
   const { value: url, onChange: handleUrlChange } = useInput();
@@ -71,46 +70,43 @@ export default function Post() {
     navigate('/');
   };
   return (
-    <>
-      <ToastContainer />
-      <StDiv>
-        <StForm onSubmit={addPost}>
-          <StButtonDiv>
-            <StSelect value={tag} onChange={handleSelect}>
-              {selectList.map((item) => {
-                return (
-                  <option value={item.value} key={item.value}>
-                    {item.name}
-                  </option>
-                );
-              })}
-            </StSelect>
-            <StButton type="submit">등록하기</StButton>
-          </StButtonDiv>
+    <StDiv>
+      <StForm onSubmit={addPost}>
+        <StButtonDiv>
+          <StSelect value={tag} onChange={handleSelect}>
+            {selectList.map((item) => {
+              return (
+                <option value={item.value} key={item.value}>
+                  {item.name}
+                </option>
+              );
+            })}
+          </StSelect>
+          <StButton type="submit">등록하기</StButton>
+        </StButtonDiv>
 
-          <StInputDiv>
-            <StUrlTitleInput
-              type="url"
-              value={url}
-              placeholder="URL을 입력하세요."
-              onChange={handleUrlChange}
-            />
-            <StUrlTitleInput
-              type="text"
-              value={title}
-              placeholder="제목을 입력하세요."
-              onChange={handleTitleChange}
-            />
-            <StContentTextarea
-              type="text"
-              value={content}
-              placeholder="내용을 입력하세요."
-              onChange={handleContentChange}
-            />
-          </StInputDiv>
-        </StForm>
-      </StDiv>
-    </>
+        <StInputDiv>
+          <StUrlTitleInput
+            type="url"
+            value={url}
+            placeholder="URL을 입력하세요."
+            onChange={handleUrlChange}
+          />
+          <StUrlTitleInput
+            type="text"
+            value={title}
+            placeholder="제목을 입력하세요."
+            onChange={handleTitleChange}
+          />
+          <StContentTextarea
+            type="text"
+            value={content}
+            placeholder="내용을 입력하세요."
+            onChange={handleContentChange}
+          />
+        </StInputDiv>
+      </StForm>
+    </StDiv>
   );
 }
 
