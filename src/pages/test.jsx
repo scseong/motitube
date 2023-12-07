@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import Button from '../components/UI/Button';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../shared/firebase';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { GoogleAuthProvider } from 'firebase/auth';
-import { useDispatch } from 'react-redux';
-import { login } from '../redux/modules/Auth';
 
-const Login = () => {
+const Register = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
   const [inputs, setInputs] = useState({
     email: '',
+    nickname: '',
     password: ''
   });
 
@@ -29,6 +26,7 @@ const Login = () => {
   const clearInputs = () => {
     setInputs({
       email: '',
+      nickname: '',
       password: ''
     });
   };
@@ -36,8 +34,12 @@ const Login = () => {
   // 유효성 검사
   const checkInputs = () => {
     // 빈칸
-    if (inputs.email.trim().length === 0 || inputs.email.trim().length === 0) {
-      toast.error('이메일과 비밀번호를 모두 입력해주세요', {
+    if (
+      inputs.email.trim().length === 0 ||
+      inputs.email.trim().length === 0 ||
+      inputs.nickname.trim().length === 0
+    ) {
+      toast.error('정보를 모두 입력해주세요', {
         position: 'top-center',
         autoClose: 3000,
         hideProgressBar: false,
@@ -50,9 +52,9 @@ const Login = () => {
       clearInputs();
       return;
     }
-    // 이메일형식이 아닐 때
-    if (!inputs.email.includes('@')) {
-      toast.error('올바른 이메일 형식을 입력해주세요', {
+    // 닉네임 2~6자 사이
+    if (inputs.nickname.length < 2 || inputs.nickname.length > 6) {
+      toast.error('닉네임은 2~6자 사이로 만들어주세요', {
         position: 'top-center',
         autoClose: 3000,
         hideProgressBar: false,
@@ -65,16 +67,51 @@ const Login = () => {
       clearInputs();
       return;
     }
+    return true;
   };
 
-  // email 로그인
-  const loginEmail = async (e) => {
+  // 오류메시지
+  const errorMsg = (code) => {
+    switch (code) {
+      case 'auth/user-not-found' || 'auth/wrong-password':
+        return '이메일 혹은 비밀번호가 일치하지 않습니다.';
+      case 'auth/email-already-in-use':
+        return '이미 사용 중인 이메일입니다.';
+      case 'auth/weak-password':
+        return '비밀번호는 6글자 이상이어야 합니다.';
+      case 'auth/network-request-failed':
+        return '네트워크 연결에 실패 하였습니다.';
+      case 'auth/invalid-email':
+        return '잘못된 이메일 형식입니다.';
+      case 'auth/internal-error':
+        return '잘못된 요청입니다.';
+      default:
+        return '로그인에 실패 하였습니다.';
+    }
+  };
+
+  // 회원가입
+  const registerUser = async (e) => {
     e.preventDefault();
-    checkInputs();
+
+    if (!checkInputs()) {
+      return;
+    }
+
+    const defaultPhotoUrl =
+      'https://tvstore-phinf.pstatic.net/20210907_263/1631002069199vDKNA_JPEG/00033.jpg';
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, inputs.email, inputs.password);
-      console.log(userCredential.user.accessToken);
-      toast.success('로그인 성공!', {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        inputs.email,
+        inputs.password
+      );
+      await updateProfile(userCredential.user, {
+        displayName: inputs.nickname,
+        photoURL: defaultPhotoUrl
+      });
+      console.log(userCredential);
+      toast.success('회원가입 성공!', {
         position: 'top-center',
         autoClose: 3000,
         hideProgressBar: false,
@@ -84,22 +121,9 @@ const Login = () => {
         progress: undefined,
         theme: 'colored'
       });
-      localStorage.setItem('accessToken', userCredential.user.accessToken);
-      dispatch(login(userCredential.user));
-      console.log(2);
-      navigate('/');
+      navigate('/login');
     } catch (error) {
-      console.error(error);
-    }
-  };
-
-  // google 로그인
-  const loginGoogle = async (e) => {
-    e.preventDefault();
-    const provider = new GoogleAuthProvider();
-    try {
-      const userCredential = await signInWithPopup(auth, provider);
-      toast.success('로그인 성공!', {
+      toast.error(errorMsg(error.code), {
         position: 'top-center',
         autoClose: 3000,
         hideProgressBar: false,
@@ -109,23 +133,24 @@ const Login = () => {
         progress: undefined,
         theme: 'colored'
       });
-      localStorage.setItem('accessToken', userCredential.user.accessToken);
-      navigate('/');
-      dispatch(login(userCredential.user));
-    } catch (error) {
-      console.log(error.message);
     }
+
+    setInputs({
+      email: '',
+      nickname: '',
+      password: ''
+    });
   };
 
-  const moveToRegisterPage = (e) => {
+  const moveToLoginPage = (e) => {
     e.preventDefault();
-    navigate('/register');
+    navigate('/login');
   };
 
   return (
     <ScWrapper>
       <ScForm>
-        <h1>로그인</h1>
+        <h1>회원가입</h1>
         <input
           type="email"
           placeholder="이메일"
@@ -134,16 +159,21 @@ const Login = () => {
           onChange={changeInputs}
         />
         <input
+          type="text"
+          placeholder="닉네임"
+          name="nickname"
+          value={inputs.nickname}
+          onChange={changeInputs}
+        />
+        <input
           type="password"
           placeholder="비밀번호"
           name="password"
-          required
           value={inputs.password}
           onChange={changeInputs}
         />
-        <button onClick={loginEmail}>로그인</button>
-        <button onClick={loginGoogle}>구글로 로그인</button>
-        <span onClick={moveToRegisterPage}>회원가입 하러가기</span>
+        <Button onClick={registerUser}>회원가입</Button>
+        <span onClick={moveToLoginPage}>로그인 하러가기</span>
       </ScForm>
     </ScWrapper>
   );
@@ -182,7 +212,7 @@ const ScForm = styled.form`
     margin-bottom: 10px;
   }
 
-  input:nth-child(3) {
+  input:nth-child(4) {
     margin-bottom: 20px;
   }
 
@@ -199,5 +229,5 @@ const ScForm = styled.form`
   }
 `;
 
-export default Login;
+export default Register;
 
