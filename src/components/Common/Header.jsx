@@ -22,7 +22,7 @@ export default function Header() {
       <Link to="/profile">
         <Stmypageheader>마이페이지</Stmypageheader>
       </Link>
-      <Link to="/signup">
+      <Link to="/register">
         <Stsignupheader>회원가입</Stsignupheader>
       </Link>
       <Link to="/login">

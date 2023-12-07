@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-// import { useEffect } from 'react';
 import { auth } from '../shared/firebase';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-// import { onAuthStateChanged } from 'firebase/auth';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export default function Register() {
-  // const [currentUser, setCurrentUser] = useState(null);
   const [inputs, setInputs] = useState({
     email: '',
     nickname: '',
@@ -16,7 +13,6 @@ export default function Register() {
   });
   const navigate = useNavigate();
 
-  // input 변경
   const changeInputs = (event) => {
     setInputs({
       ...inputs,
@@ -24,7 +20,6 @@ export default function Register() {
     });
   };
 
-  // input 비우기
   const clearInputs = () => {
     setInputs({
       email: '',
@@ -33,46 +28,24 @@ export default function Register() {
     });
   };
 
-  // 유효성 검사
   const checkInputs = () => {
-    // 빈칸
     if (
       inputs.email.trim().length === 0 ||
       inputs.email.trim().length === 0 ||
       inputs.nickname.trim().length === 0
     ) {
-      toast.error('정보를 모두 입력해주세요', {
-        position: 'top-center',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-        theme: 'colored'
-      });
+      toast.error('정보를 모두 입력해주세요');
       clearInputs();
       return;
     }
-    // 닉네임 2~6자 사이
-    if (inputs.nickname.length < 2 || inputs.nickname.length > 6) {
-      toast.error('닉네임은 2~6자 사이로 만들어주세요', {
-        position: 'top-center',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-        theme: 'colored'
-      });
+    if (inputs.nickname.length < 2) {
+      toast.error('닉네임은 2자 이상으로 만들어주세요');
       clearInputs();
       return;
     }
     return true;
   };
 
-  // 오류메시지
   const errorMsg = (code) => {
     switch (code) {
       case 'auth/user-not-found' || 'auth/wrong-password':
@@ -112,28 +85,10 @@ export default function Register() {
         photoURL: defaultPhotoUrl
       });
       console.log(userCredential);
-      toast.success('회원가입 성공!', {
-        position: 'top-center',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-        theme: 'colored'
-      });
+      toast.success('회원가입 성공!');
       navigate('/login');
     } catch (error) {
-      toast.error(errorMsg(error.code), {
-        position: 'top-center',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-        theme: 'colored'
-      });
+      toast.error(errorMsg(error.code));
     }
 
     setInputs({
@@ -229,114 +184,4 @@ const Form = styled.form`
     font-weight: bold;
   }
 `;
-
-//   useEffect(() => {
-//     onAuthStateChanged(auth, (user) => {
-//       // console.log("user", user); 사용자 인증 정보가 변경될 때마다 해당 이벤트를 받아 처리합니다.
-//       setCurrentUser(user?.email);
-//     });
-//   }, []);
-
-//   const onChange = (event) => {
-//     const {
-//       target: { name, value }
-//     } = event;
-//     if (name === 'email') {
-//       setEmail(value);
-//     }
-//     if (name === 'password') {
-//       setPassword(value);
-//     }
-//   };
-
-//   const signUp = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-//       console.log('user with signUp ->', userCredential.user);
-//     } catch (error) {
-//       const errorCode = error.code;
-//       const errorMessage = error.message;
-//       console.log('error with signUp ->', errorCode, errorMessage);
-//     }
-//   };
-
-//   const signIn = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-//       console.log('user with signIn ->', userCredential.user);
-//     } catch (error) {
-//       const errorCode = error.code;
-//       const errorMessage = error.message;
-//       console.log('error with signIn ->', errorCode, errorMessage);
-//     }
-//   };
-
-//   const logOut = async () => {
-//     alert('로그아웃 하시겠습니까?');
-//     await signOut(auth);
-//   };
-
-//   return (
-//     <>
-//       <>
-//         <div>{currentUser}</div>
-//         <StBtn onClick={logOut}>로그아웃</StBtn>
-//       </>
-
-//       <InputWrapper>
-//         <div>
-//           이메일
-//           <input
-//             type="email"
-//             value={email}
-//             name="email"
-//             onChange={onChange}
-//             placeholder="이메일을 입력해주세요"
-//             required
-//             style={{
-//               backgroundColor: 'white',
-//               color: 'black'
-//             }}
-//           ></input>
-//         </div>
-//         <div>
-//           비밀번호
-//           <input
-//             type="password"
-//             value={password}
-//             name="password"
-//             onChange={onChange}
-//             placeholder="비밀번호를 입력해주세요"
-//             required
-//             style={{
-//               backgroundColor: 'white',
-//               color: 'black'
-//             }}
-//           ></input>
-//         </div>
-
-//         <StBtn onClick={signUp}>회원가입</StBtn>
-//         <StBtn onClick={signIn}>로그인</StBtn>
-//       </InputWrapper>
-//     </>
-//   );
-// }
-
-// const InputWrapper = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   position: relative;
-// `;
-
-// const StBtn = styled.button`
-//   background-color: #f1cc13;
-//   color: black;
-//   cursor: pointer;
-//   padding: 10px;
-//   margin-top: 10px;
-// `;
 

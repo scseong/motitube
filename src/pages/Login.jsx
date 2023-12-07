@@ -37,31 +37,13 @@ const Login = () => {
   const checkInputs = () => {
     // 빈칸
     if (inputs.email.trim().length === 0 || inputs.email.trim().length === 0) {
-      toast.error('이메일과 비밀번호를 모두 입력해주세요', {
-        position: 'top-center',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-        theme: 'colored'
-      });
+      toast.error('이메일과 비밀번호를 모두 입력해주세요');
       clearInputs();
       return;
     }
     // 이메일형식이 아닐 때
     if (!inputs.email.includes('@')) {
-      toast.error('올바른 이메일 형식을 입력해주세요', {
-        position: 'top-center',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-        theme: 'colored'
-      });
+      toast.error('올바른 이메일 형식을 입력해주세요');
       clearInputs();
       return;
     }
@@ -74,16 +56,7 @@ const Login = () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, inputs.email, inputs.password);
       console.log(userCredential.user.accessToken);
-      toast.success('로그인 성공!', {
-        position: 'top-center',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-        theme: 'colored'
-      });
+      toast.success('로그인 성공!');
       localStorage.setItem('accessToken', userCredential.user.accessToken);
       dispatch(login(userCredential.user));
       console.log(2);
@@ -99,16 +72,7 @@ const Login = () => {
     const provider = new GoogleAuthProvider();
     try {
       const userCredential = await signInWithPopup(auth, provider);
-      toast.success('로그인 성공!', {
-        position: 'top-center',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-        theme: 'colored'
-      });
+      toast.success('로그인 성공!');
       localStorage.setItem('accessToken', userCredential.user.accessToken);
       navigate('/');
       dispatch(login(userCredential.user));
