@@ -8,7 +8,8 @@ import {
   StLoginheader,
   SearchContainer,
   SearchInput,
-  SearchImage
+  SearchImage,
+  StRegister
 } from './styles';
 import logo from 'assets/images/logo.png';
 import ProjectTitle from 'assets/images/title.png';
@@ -21,6 +22,9 @@ export default function Header() {
       <StLogo type="logo" src={logo} />
       <Link to="/">
         <StProjectname src={ProjectTitle} />
+      </Link>
+      <Link to="/Write">
+        <StRegister>등록하기</StRegister>
       </Link>
       <Link to="/profile">
         <Stmypageheader>마이페이지</Stmypageheader>

@@ -1,0 +1,16 @@
+import React, { useState } from 'react';
+import { useQuery, QueryClient, QueryClientProvider } from 'react-query';
+
+const VideoButton = () => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const videoData = [
+    { id: 1, title: '영상 1', category: '꿈' },
+    { id: 2, title: '영상 2', category: '열정' },
+    { id: 3, title: '영상 3', category: '돈' },
+    { id: 4, title: '영상 4', category: '공부' },
+    { id: 5, title: '영상 5', category: '인간관계' }
+  ];
+
+  await;
+};
