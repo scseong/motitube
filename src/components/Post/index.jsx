@@ -10,18 +10,19 @@ import {
   StContentTextarea
 } from './styles';
 import { formattedDate } from 'util/date';
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from 'shared/firebase';
 import useInput from 'hooks/useInput';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useMutation, useQueryClient } from 'react-query';
+import { addPost } from 'api/post';
 
 export default function Post() {
   const { value: url, onChange: handleUrlChange } = useInput();
   const { value: title, onChange: handleTitleChange } = useInput();
   const { value: content, onChange: handleContentChange } = useInput();
   const { value: tag, onChange: handleSelect } = useInput('성공');
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const selectList = [
@@ -32,8 +33,17 @@ export default function Post() {
     { value: 'etc', name: '기타' }
   ];
 
-  // firebase에 데이터 추가
-  const addPost = async (e) => {
+  const mutationAddPost = useMutation({
+    mutationFn: addPost,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['post'] });
+    },
+    onError: (error) => {
+      console.log(error);
+    }
+  });
+
+  const onClickAddPostButtonHandler = (e) => {
     e.preventDefault();
     if (!url) {
       return toast.error('url을 입력해주세요.');
@@ -54,13 +64,14 @@ export default function Post() {
       userId: 'qwer123',
       userName: '우공이산'
     };
-    await addDoc(collection(db, 'post'), newPost);
+    mutationAddPost.mutate({ newPost });
     alert('게시물이 등록되었습니다.');
     navigate('/');
   };
+
   return (
     <StDiv>
-      <StForm onSubmit={addPost}>
+      <StForm onSubmit={onClickAddPostButtonHandler}>
         <StButtonDiv>
           <StSelect value={tag} onChange={handleSelect}>
             {selectList.map((item) => {
