@@ -1,11 +1,11 @@
 import React from 'react';
 import Category from '../components/Homecomponents/Category';
-import Slicebar from '../components/Homecomponents/Slicebar';
+import Banner from 'components/Homecomponents/Banner';
 
 export default function Home() {
   return (
     <div>
-      <Slicebar />
+      <Banner />
       <Category />
     </div>
   );
