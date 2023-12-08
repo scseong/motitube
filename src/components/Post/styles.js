@@ -26,7 +26,7 @@ export const StSelect = styled.select`
 `;
 
 export const StButton = styled.button`
-  border: 1px solid ${(props) => props.theme.primaryColor};
+  border: 2px solid ${(props) => props.theme.primaryColor};
   border-radius: 10px;
   color: gray;
   float: right;
@@ -60,5 +60,6 @@ export const StContentTextarea = styled.textarea`
   padding-top: 10px;
   height: 200px;
   color: white;
+  resize: none;
 `;
 
