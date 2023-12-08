@@ -1,5 +1,29 @@
 import styled from 'styled-components';
 
+/* Detail Page */
+export const StDetailWrapper = styled.div`
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+
+  & > section:first-child {
+    flex-basis: 70vw;
+  }
+
+  & > section:last-child {
+    flex-basis: 30vw;
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    flex-direction: column;
+
+    & > section {
+      flex-basis: 100% !important;
+    }
+  }
+`;
+
 /* Sidebar */
 export const StSidebar = styled.div`
   padding: 0.6rem 1rem;
@@ -42,7 +66,6 @@ export const StMovieInfo = styled.div`
     font-size: 1.4rem;
     line-height: 2rem;
     font-weight: 700;
-    letter-spacing: -2px;
     word-break: break-word;
   }
 
