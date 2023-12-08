@@ -40,7 +40,7 @@ export default function Sidebar({ postId }) {
       </StSidebarNav>
       {selectedTab.includes(tabs.recommend) && <PostInfo postInfo={postInfo} />}
       {selectedTab.includes(tabs.related) && <RecommendMovies />}
-      {selectedTab.includes(tabs.comments) && <Comments />}
+      {selectedTab.includes(tabs.comments) && <Comments postId={postId} />}
     </StSidebar>
   );
 }
