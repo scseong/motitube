@@ -1,0 +1,46 @@
+/* ProfileManagement.css */
+.profile-management {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #252b48;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+  color: #f7e987;
+}
+
+.profile-management input {
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #5b9a8b;
+  background-color: #445069;
+  color: #f7e987;
+}
+
+.profile-management button {
+  padding: 10px;
+  font-size: 1em;
+  color: #252b48;
+  background-color: #f7e987;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-management button:hover {
+  background-color: #5b9a8b;
+}
+
+.profile-management img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}

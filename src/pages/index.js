@@ -1,7 +1,7 @@
 import Home from './Home';
 import Detail from './Detail';
 import Login from './Login';
-import Profile from './Profile';
+import Mypage from './Mypage';
 import Write from './Write';
 
-export { Home, Detail, Login, Profile, Write };
+export { Home, Detail, Login, Mypage, Write };
