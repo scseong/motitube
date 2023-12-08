@@ -16,7 +16,6 @@ import ProjectTitle from 'assets/images/title.png';
 import { Link } from 'react-router-dom';
 
 export default function Header() {
-  // 링크로 할지 네비게이션으로 할지
   return (
     <StHeader>
       <StLogo type="logo" src={logo} />
