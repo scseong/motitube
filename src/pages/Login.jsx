@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth } from '../shared/firebase';
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { GoogleAuthProvider } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { login } from '../redux/modules/Auth';
 
 const Login = () => {
@@ -24,7 +23,7 @@ const Login = () => {
     });
   };
 
-  const clearInputs = () => {
+  const resetInputs = () => {
     setInputs({
       email: '',
       password: ''
@@ -32,19 +31,18 @@ const Login = () => {
   };
 
   const checkInputs = () => {
-    if (inputs.email.trim().length === 0 || inputs.email.trim().length === 0) {
+    if (inputs.email.trim().length === 0 || inputs.password.trim().length === 0) {
       toast.error('이메일과 비밀번호 모두 입력해주세요');
-      clearInputs();
+      resetInputs();
       return;
     }
     if (!inputs.email.includes('@')) {
-      toast.error('올바른 이메일 형식을 입력해주세요');
-      clearInputs();
+      toast.error('이메일 형식으로 입력해주세요');
+      resetInputs();
       return;
     }
   };
 
-  // email 로그인
   const loginEmail = async (e) => {
     e.preventDefault();
     checkInputs();
@@ -57,10 +55,10 @@ const Login = () => {
       navigate('/');
     } catch (error) {
       console.error(error);
+      toast.error('로그인에 실패했습니다. 다시 시도해주세요.');
     }
   };
 
-  // google 로그인
   const loginGoogle = async (e) => {
     e.preventDefault();
     const provider = new GoogleAuthProvider();
@@ -72,17 +70,18 @@ const Login = () => {
       dispatch(login(userCredential.user));
     } catch (error) {
       console.log(error.message);
+      toast.error('로그인에 실패했습니다. 다시 시도해주세요.');
     }
   };
 
-  const moveToRegisterPage = (e) => {
+  const moveRegisterPage = (e) => {
     e.preventDefault();
     navigate('/register');
   };
 
   return (
-    <ScWrapper>
-      <ScForm>
+    <Wrapper>
+      <Form>
         <h1>로그인</h1>
         <input
           type="email"
@@ -99,15 +98,27 @@ const Login = () => {
           value={inputs.password}
           onChange={changeInputs}
         />
-        <button onClick={loginEmail}>로그인</button>
-        <button onClick={loginGoogle}>구글로 로그인</button>
-        <span onClick={moveToRegisterPage}>회원가입 하러가기</span>
-      </ScForm>
-    </ScWrapper>
+        <button onClick={loginEmail} style={{ marginBottom: '0px' }}>
+          로그인
+        </button>
+        <button onClick={loginGoogle} style={{ marginTop: '10px' }}>
+          구글로 로그인
+        </button>
+        <div
+          style={{
+            fontSize: '10px',
+            marginTop: '20px'
+          }}
+        >
+          아직 회원가입 전이라면?
+        </div>
+        <span onClick={moveRegisterPage}>가입 하러가기</span>
+      </Form>
+    </Wrapper>
   );
 };
 
-const ScWrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -115,21 +126,21 @@ const ScWrapper = styled.div`
   height: 100vh;
 `;
 
-const ScForm = styled.form`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 40%;
   height: 50%;
-  padding: 30px;
-  border-radius: 10px;
-  background-color: var(--light-blue);
+  padding: 40px;
+  border-radius: 50px;
+  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
 
   h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 30px;
+    font-size: 30px;
+    margin-bottom: 50px;
   }
 
   input {
@@ -138,22 +149,27 @@ const ScForm = styled.form`
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 10px;
-  }
-
-  input:nth-child(3) {
-    margin-bottom: 20px;
+    color: black;
+    background-color: white;
   }
 
   button {
+    cursor: pointer;
     width: 50%;
+    height: 30px;
+    border-radius: 10px;
+    margin-top: 30px;
     margin-bottom: 10px;
+    font-size: 20px;
+    color: black;
+    background-color: #f1cc13;
   }
 
   span {
-    margin-top: 10px;
     cursor: pointer;
-    color: var(--deep-blue);
     font-weight: bold;
+    color: #f1cc13;
+    margin-top: 10px;
   }
 `;
 

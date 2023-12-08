@@ -5,22 +5,23 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-export default function Register() {
+const Register = () => {
+  const navigate = useNavigate();
+
   const [inputs, setInputs] = useState({
     email: '',
     nickname: '',
     password: ''
   });
-  const navigate = useNavigate();
 
-  const changeInputs = (event) => {
+  const changeInputs = (e) => {
     setInputs({
       ...inputs,
-      [event.target.name]: event.target.value
+      [e.target.name]: e.target.value
     });
   };
 
-  const clearInputs = () => {
+  const resetInputs = () => {
     setInputs({
       email: '',
       nickname: '',
@@ -31,16 +32,16 @@ export default function Register() {
   const checkInputs = () => {
     if (
       inputs.email.trim().length === 0 ||
-      inputs.email.trim().length === 0 ||
+      inputs.password.trim().length === 0 ||
       inputs.nickname.trim().length === 0
     ) {
       toast.error('정보를 모두 입력해주세요');
-      clearInputs();
+      resetInputs();
       return;
     }
     if (inputs.nickname.length < 2) {
-      toast.error('닉네임은 2자 이상으로 만들어주세요');
-      clearInputs();
+      toast.error('닉네임은 2자 이상이어야 합니다');
+      resetInputs();
       return;
     }
     return true;
@@ -61,7 +62,7 @@ export default function Register() {
       case 'auth/internal-error':
         return '잘못된 요청입니다';
       default:
-        return '로그인에 실패 하였습니다';
+        return '로그인에 실패 했습니다';
     }
   };
 
@@ -72,7 +73,7 @@ export default function Register() {
       return;
     }
 
-    const defaultPhotoUrl = '';
+    const defaultPhotoUrl = 'https://m.ezendolls.com/web/product/big/201803/605_shop1_119071.jpg';
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -96,7 +97,7 @@ export default function Register() {
     });
   };
 
-  const moveToLoginPage = (e) => {
+  const moveLoginPage = (e) => {
     e.preventDefault();
     navigate('/login');
   };
@@ -106,32 +107,43 @@ export default function Register() {
       <Form>
         <h1>회원가입</h1>
         <input
-          name="email"
-          placeholder="이메일"
-          type="email"
-          value={inputs.email}
-          onChange={changeInputs}
-        />
-        <input
           name="nickname"
-          placeholder="닉네임"
+          placeholder="닉네임을 입력하세요"
           type="text"
           value={inputs.nickname}
           onChange={changeInputs}
         />
+
+        <input
+          name="email"
+          placeholder="이메일을 입력하세요"
+          type="email"
+          value={inputs.email}
+          onChange={changeInputs}
+        />
+
         <input
           name="password"
-          placeholder="비밀번호"
+          placeholder="비밀번호를 입력하세요"
           type="password"
           value={inputs.password}
           onChange={changeInputs}
         />
-        <button onClick={registerUser}>회원가입</button>
-        <span onClick={moveToLoginPage}>로그인 하러가기</span>
+
+        <button onClick={registerUser}>가입하기</button>
+        <div
+          style={{
+            fontSize: '10px',
+            marginTop: '20px'
+          }}
+        >
+          이미 가입이 되어있다면?
+        </div>
+        <span onClick={moveLoginPage}>로그인 하러가기</span>
       </Form>
     </Wrapper>
   );
-}
+};
 
 const Wrapper = styled.div`
   display: flex;
@@ -148,14 +160,14 @@ const Form = styled.form`
   align-items: center;
   width: 40%;
   height: 50%;
-  padding: 30px;
-  border-radius: 10px;
-  background-color: var(--light-blue);
+  padding: 40px;
+  border-radius: 50px;
+  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
 
   h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 30px;
+    font-size: 30px;
+    margin-bottom: 50px;
   }
 
   input {
@@ -164,22 +176,29 @@ const Form = styled.form`
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 10px;
-  }
-
-  input:nth-child(4) {
-    margin-bottom: 20px;
+    color: black;
+    background-color: white;
   }
 
   button {
+    cursor: pointer;
     width: 50%;
+    height: 30px;
+    border-radius: 10px;
+    margin-top: 30px;
     margin-bottom: 10px;
+    font-size: 20px;
+    color: black;
+    background-color: #f1cc13;
   }
 
   span {
-    margin-top: 10px;
     cursor: pointer;
-    color: var(--deep-blue);
     font-weight: bold;
+    color: #f1cc13;
+    margin-top: 10px;
   }
 `;
+
+export default Register;
 
