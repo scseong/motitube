@@ -1,40 +1,22 @@
 import React from 'react';
 import { Sidebar, VideoInfo, VideoPlayer } from 'components/Detail';
-import styled from 'styled-components';
+import { useQuery } from 'react-query';
+import { getVideo } from 'api/video';
+import { StDetailWrapper } from '../components/Detail/styles';
 
 export default function Detail() {
+  const { isLoading, data } = useQuery(['video'], () => getVideo('video.json'));
+  const postId = 'c6bafd71-78c7-4f01-a6ef-c51d6cec5843'; // TODO: params
+
   return (
     <StDetailWrapper>
       <section>
         <VideoPlayer />
-        <VideoInfo />
+        {!isLoading && <VideoInfo videoInfo={data.items[0]} />}
       </section>
       <section>
-        <Sidebar />
+        <Sidebar postId={postId} />
       </section>
     </StDetailWrapper>
   );
 }
-
-const StDetailWrapper = styled.div`
-  padding: 1rem;
-  display: flex;
-  gap: 1rem;
-
-  & > section:first-child {
-    flex-basis: 70vw;
-  }
-
-  & > section:last-child {
-    flex-basis: 30vw;
-  }
-
-  @media screen and (max-width: 1024px) {
-    width: 100%;
-    flex-direction: column;
-
-    & > section {
-      flex-basis: 100% !important;
-    }
-  }
-`;
