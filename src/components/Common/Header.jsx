@@ -2,11 +2,11 @@ import React from 'react';
 import {
   StHeader,
   StLogo,
+  StBtnInputWrapper,
   Stbutton,
   SearchContainer,
   SearchInput,
-  SearchImage,
-  StBtnInputWrapper
+  SearchImage
 } from './styles';
 import logo from 'assets/images/logo.png';
 import { Link } from 'react-router-dom';

@@ -16,7 +16,6 @@ export const StHeader = styled.header`
 export const StLogo = styled.img`
   position: relative;
   background-image: url('assets/images/logo.png');
-  background-image: url('assets/images/logo.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -24,13 +23,6 @@ export const StLogo = styled.img`
   margin: 10px;
 `;
 
-export const StProjectname = styled.img`
-  position: relative;
-  background-image: url('assets/images/title.png');
-  background-image: url('assets/images/title.png');
-  background-size: cover;
-  width: 200px;
-`;
 export const StBtnInputWrapper = styled.div`
   display: flex;
   justify-content: center;
