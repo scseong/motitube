@@ -66,7 +66,7 @@ const Button = styled.button`
   position: relative;
   margin: 30px auto 30px auto;
   all: unset;
-
+  z-index: auto;
   border: 1px solid red;
   padding: 0.5em 2em;
   color: coral;
