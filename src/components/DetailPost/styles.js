@@ -63,3 +63,103 @@ export const StActionMenu = styled.div`
     }
   }
 `;
+
+/* RecommendMovies */
+
+/* Comments */
+export const StWrapper = styled.div`
+  padding: 2rem 0;
+`;
+
+export const StCommentHeader = styled.header`
+  & > span {
+    display: block;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    font-weight: bold;
+  }
+`;
+
+export const StCommentContainer = styled.div`
+  display: flex;
+  padding: 1rem 0;
+`;
+
+export const StCommentAvatar = styled.div`
+  display: flex;
+
+  img {
+    margin-right: 1rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+  }
+`;
+
+export const StCommentInput = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  user-select: none;
+
+  textarea {
+    margin-bottom: 8px;
+    padding: 2px 0 6px 0;
+    width: 100%;
+    font-size: 14px;
+    border-bottom: 1px solid #999;
+    overflow-y: hidden;
+    resize: none;
+    transition: border 0.3s ease-in-out;
+
+    &:focus {
+      border-bottom: 1px solid #fff;
+    }
+  }
+
+  div {
+    button {
+      padding: 0.5rem 1rem;
+      border-radius: 14px;
+      cursor: pointer;
+
+      &:first-child:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      &:last-child {
+        margin-left: 8px;
+        background-color: rgba(255, 255, 255, 0.2);
+        cursor: default;
+      }
+    }
+  }
+`;
+
+export const StCommentList = styled.div``;
+
+export const StCommentItem = styled.div`
+  display: flex;
+  margin-bottom: 2rem;
+`;
+
+export const StCommentDetail = styled.div`
+  & > div:first-child {
+    margin-bottom: 8px;
+
+    strong {
+      font-weight: bold;
+      margin-right: 4px;
+    }
+
+    span {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+  }
+  p {
+    font-size: 14px;
+    line-height: 1.2rem;
+  }
+`;

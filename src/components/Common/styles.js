@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const StMain = styled.main`
+  min-height: ${(props) => props.theme.mainHeight};
+`;
+// header.jsx
 export const StHeader = styled.header`
   display: flex;
   align-items: center;
@@ -9,12 +13,9 @@ export const StHeader = styled.header`
   color: black;
 `;
 
-export const StMain = styled.main`
-  min-height: ${(props) => props.theme.mainHeight};
-`;
-
 export const StLogo = styled.img`
   position: relative;
+  background-image: url('assets/images/logo.png');
   background-image: url('assets/images/logo.png');
   background-size: cover;
   background-repeat: no-repeat;
@@ -25,6 +26,7 @@ export const StLogo = styled.img`
 
 export const StProjectname = styled.img`
   position: relative;
+  background-image: url('assets/images/title.png');
   background-image: url('assets/images/title.png');
   background-size: cover;
   width: 200px;
