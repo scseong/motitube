@@ -12,8 +12,6 @@ export default function Sidebar({ postInfo, postId }) {
   const [selectedTab, setSelectedTab] = useState(tabs.recommend);
   const handleClickBtn = (e) => setSelectedTab(e.target.name);
 
-  if (!postInfo) return;
-
   return (
     <StSidebar>
       <StSidebarNav>
@@ -30,7 +28,7 @@ export default function Sidebar({ postInfo, postId }) {
         ))}
       </StSidebarNav>
       {selectedTab.includes(tabs.recommend) && <PostInfo postInfo={postInfo} />}
-      {selectedTab.includes(tabs.related) && <RecommendMovies />}
+      {selectedTab.includes(tabs.related) && <RecommendMovies tag={postInfo.tag} />}
       {selectedTab.includes(tabs.comments) && <Comments postId={postId} />}
     </StSidebar>
   );

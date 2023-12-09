@@ -21,7 +21,7 @@ export default function Detail() {
     <StDetailWrapper>
       <section>
         <VideoPlayer videoId={postInfo.videoId} />
-        {Object.keys(postInfo).length && <FetchLoader videoId={postInfo.videoId} />}
+        {Object.keys(postInfo).length && <FetchLoader videoId={postInfo.videoId} postId />}
       </section>
       <section>
         <Sidebar postInfo={postInfo} postId={postId} />

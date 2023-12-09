@@ -12,6 +12,11 @@ export const getPost = async (postId) => {
   return querySnapshot.docs.map((doc) => doc.data())[0];
 };
 
+export const getFilterdPosts = async (property, value) => {
+  const querySnapshot = await getDocs(collection(db, 'post'), where(property, '==', value));
+  return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+};
+
 export const addPost = async (newPost) => {
   await addDoc(collection(db, 'post'), newPost);
 };
