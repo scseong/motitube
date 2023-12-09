@@ -1,13 +1,16 @@
 import React from 'react';
-import { StHeader } from './styles';
-import { StLogo } from './styles';
-import { Stmypageheader } from './styles';
-import { Stsignupheader } from './styles';
-import { StProjectname } from './styles';
-import { StLoginheader } from './styles';
-import { SearchContainer } from './styles';
-import { SearchInput } from './styles';
-import { SearchImage } from './styles';
+import {
+  StHeader,
+  StLogo,
+  Stmypageheader,
+  Stsignupheader,
+  StProjectname,
+  StLoginheader,
+  SearchContainer,
+  SearchInput,
+  SearchImage,
+  StRegister
+} from './styles';
 import logo from 'assets/images/logo.png';
 import ProjectTitle from 'assets/images/title.png';
 import { Link } from 'react-router-dom';
@@ -19,10 +22,13 @@ export default function Header() {
       <Link to="/">
         <StProjectname src={ProjectTitle} />
       </Link>
+      <Link to="/Write">
+        <StRegister>등록하기</StRegister>
+      </Link>
       <Link to="/profile">
         <Stmypageheader>마이페이지</Stmypageheader>
       </Link>
-      <Link to="/register">
+      <Link to="/signup">
         <Stsignupheader>회원가입</Stsignupheader>
       </Link>
       <Link to="/login">
@@ -35,4 +41,3 @@ export default function Header() {
     </StHeader>
   );
 }
-
