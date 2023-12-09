@@ -23,13 +23,13 @@ const Images = [
     destination: 'https://www.youtube.com/watch?v=RA2MMAE4IEc'
   },
   {
-    id: 0,
+    id: 3,
     pathurl:
       'https://i.ytimg.com/an_webp/4SHwZ0bxoc4/mqdefault_6s.webp?du=3000&sqp=CL7O0KsG&rs=AOn4CLDQlouwE0piG-RuNiJMzuvy_LxROg',
     destination: 'https://www.youtube.com/watch?v=BtDEB3yyy_I'
   },
   {
-    id: 0,
+    id: 4,
     pathurl:
       'https://i.ytimg.com/an_webp/4SHwZ0bxoc4/mqdefault_6s.webp?du=3000&sqp=CL7O0KsG&rs=AOn4CLDQlouwE0piG-RuNiJMzuvy_LxROg',
     destination: 'https://www.youtube.com/watch?v=BtDEB3yyy_I'
@@ -75,7 +75,7 @@ export const Banner = () => {
   );
 };
 const Container = styled.div`
-  width: 100%;
+  width: 80%;
   height: 100%;
   overflow: hidden;
 `;

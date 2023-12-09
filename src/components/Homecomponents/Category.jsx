@@ -30,6 +30,7 @@ const Category = () => {
 
     fetchData();
   }, []);
+  console.log('post', posts);
   // const handleSortByLikes = () => {
   //   // 추천순 작동안댐
   //   const SortedPosts = [...posts].sort((a, b) => b.likes - a.likes);
@@ -51,8 +52,9 @@ const Category = () => {
               src={item.url}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen // Change here
+              allowFullScreen
             ></iframe>
+            {console.log(item)}
           </div>
           <div>
             <Stusername>유저이름:{item.userName}</Stusername>
