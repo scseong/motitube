@@ -1,21 +1,30 @@
-import React from 'react';
-import { Sidebar, VideoInfo, VideoPlayer } from 'components/Detail';
-import { useQuery } from 'react-query';
-import { getVideo } from 'api/video';
+import React, { useState, useEffect } from 'react';
+import { Sidebar, VideoPlayer, FetchLoader } from 'components/Detail';
 import { StDetailWrapper } from '../components/Detail/styles';
+import { getPost } from 'api/post';
+import { useParams } from 'react-router-dom';
 
 export default function Detail() {
-  const { isLoading, data } = useQuery(['video'], () => getVideo('video.json'));
-  const postId = 'c6bafd71-78c7-4f01-a6ef-c51d6cec5843'; // TODO: params
+  const [postInfo, setPostInfo] = useState({});
+  const { postId } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getPost(postId);
+      setPostInfo(res);
+    };
+
+    fetchData();
+  }, [postId]);
 
   return (
     <StDetailWrapper>
       <section>
-        <VideoPlayer />
-        {!isLoading && <VideoInfo videoInfo={data.items[0]} />}
+        <VideoPlayer videoId={postInfo.videoId} />
+        {Object.keys(postInfo).length && <FetchLoader videoId={postInfo.videoId} />}
       </section>
       <section>
-        <Sidebar postId={postId} />
+        <Sidebar postInfo={postInfo} postId={postId} />
       </section>
     </StDetailWrapper>
   );
