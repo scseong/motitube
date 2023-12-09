@@ -15,56 +15,61 @@ export const StMain = styled.main`
 
 export const StLogo = styled.img`
   position: relative;
-  background-image: url("assets/images/logo.png");
+  background-image: url('assets/images/logo.png');
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 200px;
   margin: 10px;
-  width: 70px;
 `;
 
 export const StProjectname = styled.img`
   position: relative;
-  background-image: url("assets/images/title.png");
+  background-image: url('assets/images/title.png');
   background-size: cover;
   width: 200px;
-  right: 20vw;
+`;
+export const StBtnInputWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  gap: 50px;
 `;
 
-export const Stmypageheader = styled.button`
-  position: absolute;
-  top: 1.5vw;
-  left: 60vw;
-`;
+export const Stbutton = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
 
-export const Stsignupheader = styled.button`
-  position: absolute;
-  left: 67vw;
-  top: 1.5vw;
-
-`;
-
-export const StLoginheader = styled.button`
-  position: absolute;
-  left: 73.5vw;
-  top: 1.5vw;
-  
+  button {
+    cursor: pointer;
+    height: 30px;
+    font-size: 14px;
+    color: black;
+  }
 `;
 
 export const SearchContainer = styled.div`
   display: flex;
-  position: absolute;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 70px;
   padding: 10px;
-  left: 80vw; 
 `;
 
 export const SearchInput = styled.input`
-  margin-right: 8px;
+  display: flex;
+  flex-direction: row;
+  width: 220px;
 `;
 
 export const SearchImage = styled.img`
   width: 20px;
   height: 20px;
 `;
+
