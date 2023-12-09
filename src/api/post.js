@@ -12,8 +12,6 @@ export const getPost = async (postId) => {
   return querySnapshot.docs.map((doc) => doc.data())[0];
 };
 
-export const addPost = async ({ newPost }) => {
-  await addDoc(collection(db, 'post'), {
-    newPost
-  });
+export const addPost = async (newPost) => {
+  await addDoc(collection(db, 'post'), newPost);
 };
