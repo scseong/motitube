@@ -45,7 +45,14 @@ const Category = () => {
         <div key={item.id}>
           <Sttimestamp>{item.timestamp}</Sttimestamp>
           <div>
-            <StAvatar src={item.avatar} />
+            <iframe
+              width="560"
+              height="315"
+              src={item.url}
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen // Change here
+            ></iframe>
           </div>
           <div>
             <Stusername>유저이름:{item.userName}</Stusername>

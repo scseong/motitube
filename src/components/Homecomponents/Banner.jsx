@@ -5,27 +5,39 @@ import { Link } from 'react-router-dom';
 
 const Images = [
   {
+    id: 0,
+    pathurl:
+      'https://i.ytimg.com/an_webp/4SHwZ0bxoc4/mqdefault_6s.webp?du=3000&sqp=CL7O0KsG&rs=AOn4CLDQlouwE0piG-RuNiJMzuvy_LxROg',
+    destination: 'https://www.youtube.com/watch?v=BtDEB3yyy_I'
+  },
+  {
     id: 1,
     pathurl:
-      'https://i.ytimg.com/an_webp/FAlYSplY4SM/mqdefault_6s.webp?du=3000&sqp=CPLTy6sG&rs=AOn4CLBN4z0UUidQvYEyzFAC7iRRSQ1c0Q',
-    destination: 'https://www.youtube.com/watch?v=BtDEB3yyy_I'
+      'https://i.ytimg.com/an_webp/nFBoJ5SKe2s/mqdefault_6s.webp?du=3000&sqp=CMjS0KsG&rs=AOn4CLA1l68yvxaP1IWZXlmxU6C2kHfeIQ',
+    destination: 'https://www.youtube.com/watch?v=eA7zGw3hhmg'
   },
   {
     id: 2,
     pathurl:
-      'https://i.ytimg.com/an_webp/6MrrvIkIIik/mqdefault_6s.webp?du=3000&sqp=COzuy6sG&rs=AOn4CLB20BDyWwCBimFbvFm2GasgDNW-YQ',
-    destination: 'https://www.youtube.com/watch?v=eA7zGw3hhmg'
-  },
-  {
-    id: 3,
-    pathurl:
       'https://i.ytimg.com/an_webp/RA2MMAE4IEc/mqdefault_6s.webp?du=3000&sqp=CP6fzKsG&rs=AOn4CLD5458O2eZ6UJ6MBPK0THqla1uVkA',
     destination: 'https://www.youtube.com/watch?v=RA2MMAE4IEc'
+  },
+  {
+    id: 0,
+    pathurl:
+      'https://i.ytimg.com/an_webp/4SHwZ0bxoc4/mqdefault_6s.webp?du=3000&sqp=CL7O0KsG&rs=AOn4CLDQlouwE0piG-RuNiJMzuvy_LxROg',
+    destination: 'https://www.youtube.com/watch?v=BtDEB3yyy_I'
+  },
+  {
+    id: 0,
+    pathurl:
+      'https://i.ytimg.com/an_webp/4SHwZ0bxoc4/mqdefault_6s.webp?du=3000&sqp=CL7O0KsG&rs=AOn4CLDQlouwE0piG-RuNiJMzuvy_LxROg',
+    destination: 'https://www.youtube.com/watch?v=BtDEB3yyy_I'
   }
 ];
 
-const TOTAL_SLIDES = 2;
-export default function Banner() {
+export const Banner = () => {
+  const TOTAL_SLIDES = 5;
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef(null);
   const nextSlide = () => {
@@ -61,15 +73,15 @@ export default function Banner() {
       <Button onClick={nextSlide}>▷</Button>
     </Container>
   );
-}
+};
 const Container = styled.div`
   width: 100%;
+  height: 100%;
   overflow: hidden;
 `;
 const Button = styled.button`
   display: flex;
   position: relative;
-
   all: unset;
 
   border: 1px solid red;

@@ -77,3 +77,8 @@ export const Sttimestamp = styled.div`
   gap: 12px;
   align-items: center;
 `;
+
+export const Styoutube = styled.iframe`
+  width: 560;
+  height: 315;
+`;

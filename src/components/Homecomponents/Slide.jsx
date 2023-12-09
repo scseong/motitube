@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Slide = ({ imagePath }) => {
   return (
     <SlideContainer>
-      <img src={imagePath} alt="Slide" />
+      <img src={imagePath} />
     </SlideContainer>
   );
 };
