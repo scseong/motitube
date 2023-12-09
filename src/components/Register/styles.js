@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -45,4 +46,11 @@ export const Form = styled.form`
     color: black;
     background-color: #f1cc13;
   }
+`;
+
+export const Stlink = styled(Link)`
+  cursor: pointer;
+  font-weight: bold;
+  color: #f1cc13;
+  margin-top: 10px;
 `;

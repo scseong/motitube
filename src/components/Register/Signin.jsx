@@ -6,9 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { login } from '../../redux/modules/authSlice';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { Wrapper, Form } from './styles';
+
+import { Wrapper, Form, Stlink } from './styles';
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -122,13 +121,6 @@ const Signin = () => {
     </Wrapper>
   );
 };
-
-const Stlink = styled(Link)`
-  cursor: pointer;
-  font-weight: bold;
-  color: #f1cc13;
-  margin-top: 10px;
-`;
 
 export default Signin;
 

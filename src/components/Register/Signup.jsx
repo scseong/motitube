@@ -4,9 +4,7 @@ import { auth } from 'shared/firebase';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { Wrapper, Form } from './styles';
+import { Wrapper, Form, Stlink } from './styles';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -150,13 +148,6 @@ const Signup = () => {
     </Wrapper>
   );
 };
-
-const Stlink = styled(Link)`
-  cursor: pointer;
-  font-weight: bold;
-  color: #f1cc13;
-  margin-top: 10px;
-`;
 
 export default Signup;
 
