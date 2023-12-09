@@ -13,7 +13,8 @@ export const getPost = async (postId) => {
 };
 
 export const getFilterdPosts = async (property, value) => {
-  const querySnapshot = await getDocs(collection(db, 'post'), where(property, '==', value));
+  const q = query(collection(db, 'post'), where(property, '==', value));
+  const querySnapshot = await getDocs(q);
   return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 };
 
