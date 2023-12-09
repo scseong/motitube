@@ -64,7 +64,7 @@ export default function Post() {
       userId: 'qwer123',
       userName: '우공이산'
     };
-    mutationAddPost.mutate({ newPost });
+    mutationAddPost.mutate(newPost);
     alert('게시물이 등록되었습니다.');
     navigate('/');
   };
@@ -109,4 +109,3 @@ export default function Post() {
     </StDiv>
   );
 }
-
