@@ -51,7 +51,6 @@ const Signin = () => {
     checkInputs();
     try {
       const userCredential = await signInWithEmailAndPassword(auth, inputs.email, inputs.password);
-      console.log(userCredential.user.accessToken);
       toast.success('로그인 되었습니다!');
       localStorage.setItem('accessToken', userCredential.user.accessToken);
       dispatch(login(userCredential.user));

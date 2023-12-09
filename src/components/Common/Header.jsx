@@ -16,7 +16,7 @@ import { logout } from '../../redux/modules/authSlice';
 export default function Header() {
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.authSlice.isLogin);
-  console.log(isLogin);
+
   return (
     <StHeader>
       <Link to="/">
