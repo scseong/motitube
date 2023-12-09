@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { login } from '../../redux/modules/authSlice';
-
 import { Wrapper, Form, Stlink } from './styles';
 
 const Signin = () => {
