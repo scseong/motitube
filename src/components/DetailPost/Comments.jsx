@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   StCommentAvatar,
+  StCommentBtn,
   StCommentContainer,
   StCommentHeader,
   StCommentInput,
@@ -23,7 +24,11 @@ export default function Comments({ postId }) {
   const navigate = useNavigate();
 
   const handleCommentBtn = () => {
-    createComment({
+    if (!content) {
+      return toast.warn('내용을 입력해주세요.');
+    }
+
+    createComment.mutate({
       userId: uid,
       userName: displayName,
       avatar: photoURL || '',
@@ -49,7 +54,7 @@ export default function Comments({ postId }) {
         <span>댓글 {filtedComments.length}</span>
         <StCommentContainer>
           <StCommentAvatar>
-            <img src="https://placehold.co/40x40" alt="avatar" />
+            <img src={photoURL} alt="avatar" />
           </StCommentAvatar>
           <StCommentInput>
             {/* TODO: RESIZE */}
@@ -65,7 +70,9 @@ export default function Comments({ postId }) {
             />
             <div>
               <button onClick={handleResetContent}>취소</button>
-              <button onClick={handleCommentBtn}>댓글</button>
+              <StCommentBtn $validate={!!content.length} onClick={handleCommentBtn}>
+                댓글
+              </StCommentBtn>
             </div>
           </StCommentInput>
         </StCommentContainer>

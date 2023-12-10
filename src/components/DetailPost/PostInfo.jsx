@@ -8,7 +8,7 @@ export default function PostInfo({ postInfo }) {
   return (
     <>
       <StUserInfo>
-        <img src={'https://placehold.co/30x30' || avatar} alt="avatar" />
+        <img src={avatar} alt="avatar" />
         <div>
           <p>{userName}</p>
           <p>{timestamp} </p>

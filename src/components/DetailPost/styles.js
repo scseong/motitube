@@ -120,7 +120,10 @@ export const StCommentInput = styled.div`
     button {
       padding: 0.5rem 1rem;
       border-radius: 14px;
-      cursor: pointer;
+
+      &:first-child {
+        cursor: pointer;
+      }
 
       &:first-child:hover {
         background-color: rgba(255, 255, 255, 0.2);
@@ -129,10 +132,15 @@ export const StCommentInput = styled.div`
       &:last-child {
         margin-left: 8px;
         background-color: rgba(255, 255, 255, 0.2);
-        cursor: default;
       }
     }
   }
+`;
+
+export const StCommentBtn = styled.button`
+  background-color: ${(props) => (props.$validate ? '#65B8FF !important' : 'inherit')};
+  color: ${(props) => (props.$validate ? 'black' : 'inherit')};
+  cursor: ${(props) => (props.$validate ? 'pointer' : `not-allowed`)};
 `;
 
 export const StCommentList = styled.div``;
@@ -143,6 +151,7 @@ export const StCommentItem = styled.div`
 `;
 
 export const StCommentDetail = styled.div`
+  flex-basis: 80%;
   & > div:first-child {
     margin-bottom: 8px;
 
@@ -160,6 +169,15 @@ export const StCommentDetail = styled.div`
     font-size: 14px;
     line-height: 1.2rem;
     word-break: break-all;
+  }
+`;
+
+export const StCommentMore = styled.div`
+  flex-basis: 10%;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
   }
 `;
 
