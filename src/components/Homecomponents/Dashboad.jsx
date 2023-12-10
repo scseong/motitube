@@ -9,15 +9,14 @@ import { formattedDate } from 'util/date';
 import { useMutation, useQueryClient } from 'react-query';
 import { getPosts } from 'api/post';
 
-export const Banner = () => {
+export const Dashboad = () => {
   const { data, isLoading, isError } = useQuery('todos', getPosts);
   const [currentSlide, setCurrentSlide] = useState(0);
   const { value: url } = useInput('');
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const TOTAL_SLIDES = 5;
+  const TOTAL_SLIDES = 2;
 
-  // useRef 초기값을 null로 설정
   const slideRef = useRef(null);
 
   const nextSlide = () => {
@@ -67,33 +66,35 @@ export const Banner = () => {
   }
 
   if (isLoading) {
-    return <p>로딩 중입니다....!</p>;
+    return <h1>로딩 중입니다....!</h1>;
   }
 
   if (isError) {
-    return <p>오류가 발생하였습니다...!</p>;
+    return <h1>오류가 발생하였습니다...!</h1>;
   }
   return (
     <>
-      <Container>
+      <Stcontainer>
         <div type="button">
-          <Button onClick={prevSlide}>◁◁</Button>
-          <Button onClick={nextSlide}>▷▷</Button>
+          <Stbutton onClick={prevSlide}>◁◁</Stbutton>
+          <Stbutton onClick={nextSlide}>▷▷</Stbutton>
         </div>
-        {currentSlide}
-        <SliderContainer ref={slideRef}>
+        {/* {currentSlide} */}
+        <StsliderContainer ref={slideRef}>
           {data.map((item) => (
-            <Link key={item.id} to={`${item.url}`}>
-              <Slide key={item.id} imagePath={item.thumbnail} />
-            </Link>
+            <>
+              <Link key={item.id} to={`${item.url}`}>
+                <Slide key={item.id} imagePath={item.thumbnail} />
+              </Link>
+            </>
           ))}
-        </SliderContainer>
-      </Container>
+        </StsliderContainer>
+      </Stcontainer>
     </>
   );
 };
 
-const Container = styled.div`
+const Stcontainer = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -103,7 +104,7 @@ const Container = styled.div`
   }
 `;
 
-const Button = styled.button`
+const Stbutton = styled.button`
   display: flex;
   position: relative;
   margin: 30px auto 30px auto;
@@ -118,8 +119,9 @@ const Button = styled.button`
     color: black;
   }
 `;
-
-const SliderContainer = styled.div`
+const StsliderContainer = styled.div`
   width: 100%;
   display: flex;
+
+  box-shadow: 0 0 10px rgba(188, 115, 20, 0.1);
 `;

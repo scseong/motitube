@@ -52,6 +52,8 @@ export default function Post() {
     } else if (!content) {
       return toast.error('내용을 입력해주세요.');
     }
+
+    const videoId = url.split('=')[1];
     const newPost = {
       url,
       title,
@@ -59,12 +61,14 @@ export default function Post() {
       tag,
       id: uuidv4(),
       timestamp: formattedDate(Date.now()),
-      avatar: 'https://example.com/avatar/john_doe.jpg',
-      likes: 42,
+      avatar: '',
+      likes: 0,
       userId: 'qwer123',
-      userName: '우공이산'
+      userName: '우공이산',
+      thumbnail: `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
+      videoId
     };
-    mutationAddPost.mutate({ newPost });
+    mutationAddPost.mutate(newPost);
     alert('게시물이 등록되었습니다.');
     navigate('/');
   };
