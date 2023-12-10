@@ -3,42 +3,45 @@ import styled from 'styled-components';
 
 export const Slide = ({ imagePath }) => {
   return (
-    <SlideContainer>
+    <Stbox>
       <div>
-        <img src={imagePath} />
+        <Stn1 type="text">영상보러가기</Stn1>
+        <img src={imagePath} alt="Slide" />
       </div>
-    </SlideContainer>
+    </Stbox>
   );
 };
 
-const SlideContainer = styled.div`
-  display: flex;
-  overflow: hidden;
-  border: 5px solid white;
-  padding: 90px;
-  width: 1515px; /* Golden ratio width (approximately 1.618) */
-  height: 700px; /* Golden ratio height (approximately 1.0) */
-  margin: 20px 1px auto 0px;
+//Slide 컴포넌트 css
+export const Stbox = styled.div`
+  white-space: nowrap;
+  overflow-x: auto;
 
   & > div {
-    width: 100%;
-    height: 100%;
-    border: 5px solid white;
-    margin: 5px auto auto 10px;
+    width: 40vw;
+    height: 40vw;
+    margin: 20px 1px auto 0px;
+    background-color: black;
     overflow: hidden;
   }
 
   img {
-    width: 50%;
-    height: 70%;
-    object-fit: cover;
-    margin: 60px auto auto 500px;
+    max-width: 100%;
+    height: 100%;
     border-radius: 15px;
   }
 `;
+export const Stn1 = styled.h1`
+  display: flex;
+  margin: 2px 10px 15px 10px;
+  max-width: 140px;
+  padding: 4px;
+  border-radius: 5px;
+  justify-content: center;
+  color: #f1cc13;
+  border: 1px solid #ff8400;
 
-// const InnerBox = styled.div`
-
-// const Image = styled.img`
-//   /* Rounded corners for a nicer look */
-// `;
+  &:hover {
+    background-color: #ff8400;
+  }
+`;

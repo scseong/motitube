@@ -23,39 +23,62 @@ export const StNaviBox = styled.div`
 export const StPostContainer = styled.div`
   display: flex;
   flex-direction: column;
+  text-align: center;
+  justify-content: center;
   color: white;
-  padding: 40px;
-  margin-top: 200px;
-  border: 1px solid white;
+  padding: 50px;
+  margin-top: 100px;
+  border: 20px solid #ffcc00;
+  background-color: black;
   flex-direction: row;
   border-radius: 12px;
   transition: all 0.2s;
   flex-wrap: wrap;
   gap: 10px;
-  &:hover {
-    transform: scale(1.02);
+
+  & div {
+    margin: 5px;
+    font-size: 15px;
+    &:hover {
+      transform: scale(1.06);
+    }
+  }
+  h1 {
+    text-align: center;
+    font-size: 15px;
+    max-width: 355px;
+    color: white;
+    font-weight: 700;
+    margin: 10px 10px 1px 0.2px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 7px 3px;
+    border: 1px solid white;
   }
 `;
 
-export const StAvatar = styled.img`
-  width: 200px;
+export const StcardImage = styled.img`
+  width: 355px;
   height: 200px;
-  margin-right: 10px;
+  margin-right: 20px;
   cursor: pointer;
   color: white;
+  border: 4px solid yellow;
 `;
 
 export const StContent = styled.p`
   display: flex;
   gap: 12px;
   align-items: center;
+  overflow: hidden;
+  max-width: 300px;
+  gap: 12px;
 `;
 export const Stusername = styled.div`
   display: flex;
   gap: 12px;
   align-items: center;
 `;
-// 추천순 버튼
+
 export const Strecommendation = styled.button`
   padding: 10px 20px;
   background-color: black;
