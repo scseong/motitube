@@ -74,7 +74,6 @@ const Signup = () => {
       return;
     }
 
-    // 프로필 사진 firebase에 업로드 하기
     const defaultPhotoUrl = 'https://m.ezendolls.com/web/product/big/201803/605_shop1_119071.jpg';
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -134,7 +133,7 @@ const Signup = () => {
             marginBottom: '20px'
           }}
         />
-        <button onClick={registerUser}>로그인 하기</button>
+        <button onClick={registerUser}>가입하기</button>
         <div
           style={{
             fontSize: '10px',
