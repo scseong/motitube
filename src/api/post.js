@@ -21,3 +21,9 @@ export const getFilterdPosts = async (property, value) => {
 export const addPost = async (newPost) => {
   await addDoc(collection(db, 'post'), newPost);
 };
+
+export const getSortedPosts = async (property) => {
+  const q = query(collection(db, 'post'), where(property, 'desc'));
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+};
