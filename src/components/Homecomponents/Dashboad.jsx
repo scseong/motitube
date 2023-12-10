@@ -95,8 +95,8 @@ export const Dashboad = () => {
 };
 
 const Stcontainer = styled.div`
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   overflow: hidden;
   & > div {
     padding: 15px;
@@ -120,7 +120,8 @@ const Stbutton = styled.button`
   }
 `;
 const StsliderContainer = styled.div`
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
   display: flex;
 
   box-shadow: 0 0 10px rgba(188, 115, 20, 0.1);

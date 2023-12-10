@@ -48,7 +48,7 @@ const Card = () => {
       {data.map((item) => (
         <div key={item.id}>
           <div>
-            <h1>카테고리:{item.tag}</h1>
+            <h1>{item.tag}</h1>
             <Link key={item.id} to={`posts/${item.id}`}>
               <StcardImage src={item.thumbnail}></StcardImage>
             </Link>
