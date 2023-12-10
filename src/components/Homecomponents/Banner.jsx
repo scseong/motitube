@@ -1,27 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Slide } from './Slide';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-
-const Images = [
-  {
-    id: 0,
-    pathurl:
-      'https://i.ytimg.com/an_webp/4SHwZ0bxoc4/mqdefault_6s.webp?du=3000&sqp=CL7O0KsG&rs=AOn4CLDQlouwE0piG-RuNiJMzuvy_LxROg',
-    destination: 'https://www.youtube.com/watch?v=BtDEB3yyy_I'
-  },
-  {
-    id: 1,
-    pathurl:
-      'https://i.ytimg.com/an_webp/nFBoJ5SKe2s/mqdefault_6s.webp?du=3000&sqp=CMjS0KsG&rs=AOn4CLA1l68yvxaP1IWZXlmxU6C2kHfeIQ',
-    destination: 'https://www.youtube.com/watch?v=eA7zGw3hhmg'
-  }
-];
+import { Link, useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import useInput from 'hooks/useInput';
+import { v4 as uuidv4 } from 'uuid';
+import { formattedDate } from 'util/date';
+import { useMutation, useQueryClient } from 'react-query';
+import { getPosts } from 'api/post';
 
 export const Banner = () => {
-  const TOTAL_SLIDES = 2;
+  const { data, isLoading, isError } = useQuery('todos', getPosts);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { value: url } = useInput('');
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const TOTAL_SLIDES = 5;
+
+  // useRef 초기값을 null로 설정
   const slideRef = useRef(null);
+
   const nextSlide = () => {
     if (currentSlide >= TOTAL_SLIDES) {
       setCurrentSlide(0);
@@ -29,6 +27,7 @@ export const Banner = () => {
       setCurrentSlide(currentSlide + 1);
     }
   };
+
   const prevSlide = () => {
     if (currentSlide === 0) {
       setCurrentSlide(TOTAL_SLIDES);
@@ -36,53 +35,91 @@ export const Banner = () => {
       setCurrentSlide(currentSlide - 1);
     }
   };
-  useEffect(() => {
-    slideRef.current.style.transition = 'all 0.5s ease-in-out';
-    slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
-  }, [currentSlide]);
 
+  useEffect(() => {
+    if (slideRef.current) {
+      slideRef.current.style.transition = 'all 0.5s ease-in-out';
+      slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
+    }
+  }, [currentSlide, slideRef]);
+
+  const mutationAddPost = useMutation({
+    mutationFn: getPosts,
+    onSuccess: () => {
+      queryClient.invalidateQueries('post');
+    },
+    onError: (error) => {
+      console.log(error);
+    }
+  });
+
+  const videoId = url.split('=')[1];
+  const newPost = {
+    url,
+    id: uuidv4(),
+    timestamp: formattedDate(Date.now()),
+    thumbnail: `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
+    videoId
+  };
+
+  if (mutationAddPost.isSuccess) {
+    navigate(newPost.thumbnail);
+  }
+
+  if (isLoading) {
+    return <p>로딩 중입니다....!</p>;
+  }
+
+  if (isError) {
+    return <p>오류가 발생하였습니다...!</p>;
+  }
   return (
-    <Container>
-      {currentSlide}
-      <SliderContainer ref={slideRef}>
-        {Images.map((item) => (
-          <Link key={item.id} to={item.destination}>
-            <Slide key={item.id} imagePath={item.pathurl} />
-          </Link>
-        ))}
-      </SliderContainer>
-      <Button onClick={prevSlide}>◁</Button>
-      <Button onClick={nextSlide}>▷</Button>
-    </Container>
+    <>
+      <Container>
+        <div type="button">
+          <Button onClick={prevSlide}>◁◁</Button>
+          <Button onClick={nextSlide}>▷▷</Button>
+        </div>
+        {currentSlide}
+        <SliderContainer ref={slideRef}>
+          {data.map((item) => (
+            <Link key={item.id} to={`${item.url}`}>
+              <Slide key={item.id} imagePath={item.thumbnail} />
+            </Link>
+          ))}
+        </SliderContainer>
+      </Container>
+    </>
   );
 };
+
 const Container = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
+  & > div {
+    padding: 15px;
+    display: flex;
+  }
 `;
+
 const Button = styled.button`
   display: flex;
   position: relative;
   margin: 30px auto 30px auto;
   all: unset;
   z-index: auto;
-  border: 1px solid red;
-  padding: 0.5em 2em;
-  color: coral;
+  color: #ffcc00;
+  padding: 10px;
   border-radius: 10px;
   &:hover {
     transition: all 0.3s ease-in-out;
-    background-color: coral;
-    color: #fff;
+    background-color: #ffcc00;
+    color: black;
   }
 `;
+
 const SliderContainer = styled.div`
   width: 100%;
-  display: flex; //이미지들을 가로로 나열합니다.
-`;
-const ButtonAlign = styled.div`
-  position: relative;
-  margin: auto 30px auto 90px;
-  left: 40vw;
+  display: flex;
 `;
