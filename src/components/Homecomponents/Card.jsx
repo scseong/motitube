@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StContent, StPostContainer, Stusername, Sttimestamp, StcardImage } from './styles';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { useQuery } from 'react-query';
 import { getPosts } from 'api/post';
@@ -43,19 +43,15 @@ const Card = () => {
     return <p>데이터를 불러오는 중 오류가 발생했습니다</p>;
   }
 
-  const CardImageClickHandler = () => {
-    if (!mutationgetPost.isSuccess) {
-      navigate(`posts/${newPost.id}`);
-    }
-  };
-
   return (
     <StPostContainer>
       {data.map((item) => (
         <div key={item.id}>
           <div>
             <h1>카테고리:{item.tag}</h1>
-            <StcardImage onClick={CardImageClickHandler} src={item.thumbnail}></StcardImage>
+            <Link key={item.id} to={`posts/${item.id}`}>
+              <StcardImage src={item.thumbnail}></StcardImage>
+            </Link>
           </div>
           <div>
             <Stusername>
@@ -66,7 +62,9 @@ const Card = () => {
           <div>
             <StContent>{item.content}</StContent>
           </div>
+
           <Sttimestamp>{item.timestamp}</Sttimestamp>
+
           <LikeButton>좋아요</LikeButton>
         </div>
       ))}
