@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Register, Login, Detail, Home, Profile, Write } from 'pages';
+import { Register, Login, Detail, Home, Mypage, Write } from 'pages';
 import Layout from 'components/Common/Layout';
 
 export default function Router() {
@@ -11,10 +11,9 @@ export default function Router() {
         <Route path="/posts/:postId" element={<Detail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/mypage" element={<Mypage />} />
         <Route path="/write" element={<Write />} />
       </Route>
     </Routes>
   );
 }
-
