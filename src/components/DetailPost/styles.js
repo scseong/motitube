@@ -64,8 +64,6 @@ export const StActionMenu = styled.div`
   }
 `;
 
-/* RecommendMovies */
-
 /* Comments */
 export const StWrapper = styled.div`
   padding: 2rem 0;
@@ -161,5 +159,47 @@ export const StCommentDetail = styled.div`
   p {
     font-size: 14px;
     line-height: 1.2rem;
+    word-break: break-all;
+  }
+`;
+
+/* RecommendMovies */
+export const StRecommentMovieList = styled.div`
+  padding: 1rem 0;
+`;
+
+export const StRecommentMovie = styled.div`
+  margin-bottom: 0.8rem;
+  a {
+    display: flex;
+    gap: 8px;
+    & > div:first-child {
+      img {
+        width: 170px;
+        height: 100px;
+        border-radius: 8px;
+      }
+    }
+
+    & > div:last-child {
+      padding: 8px 0;
+    }
+  }
+
+  span {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-bottom: 8px;
+    font-size: 0.8rem;
+    line-height: 1rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  span:first-child {
+    font-size: 1rem;
+    color: #fff;
   }
 `;

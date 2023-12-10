@@ -2,67 +2,78 @@ import React from 'react';
 import {
   StCommentAvatar,
   StCommentContainer,
-  StCommentDetail,
   StCommentHeader,
   StCommentInput,
-  StCommentItem,
   StCommentList,
   StWrapper
 } from './styles';
+import { auth } from 'shared/firebase';
+import useComment from 'hooks/useComment';
+import { v4 as uuidv4 } from 'uuid';
+import useInput from 'hooks/useInput';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import Comment from './Comment';
 
-export default function Comments() {
+export default function Comments({ postId }) {
+  const { value: content, setValue: setContent, onChange } = useInput('');
+  const { displayName, uid, photoURL } = auth.currentUser || {};
+  const { comments, createComment } = useComment();
+  const filtedComments = comments.filter((comment) => comment.postId === postId);
+  const navigate = useNavigate();
+
+  const handleCommentBtn = () => {
+    createComment({
+      userId: uid,
+      userName: displayName,
+      avatar: photoURL || '',
+      content: content,
+      id: uuidv4(),
+      createdAt: Date.now(),
+      postId
+    });
+    setContent('');
+  };
+
+  const handleResetContent = () => setContent('');
+  const handleClickTextarea = () => {
+    if (!auth.currentUser) {
+      toast.warn('로그인이 필요합니다.');
+      navigate('/login');
+    }
+  };
+
   return (
     <StWrapper>
       <StCommentHeader>
-        <span>댓글 2개</span>
+        <span>댓글 {filtedComments.length}</span>
         <StCommentContainer>
           <StCommentAvatar>
             <img src="https://placehold.co/40x40" alt="avatar" />
           </StCommentAvatar>
           <StCommentInput>
             {/* TODO: RESIZE */}
-            <textarea name="comments" cols="30" rows="1" placeholder="댓글 추가..." />
+            {/* TODO: FILTER */}
+            <textarea
+              name="comments"
+              cols="30"
+              rows="1"
+              placeholder="댓글 추가..."
+              value={content}
+              onClick={handleClickTextarea}
+              onChange={onChange}
+            />
             <div>
-              <button>취소</button>
-              <button>댓글</button>
+              <button onClick={handleResetContent}>취소</button>
+              <button onClick={handleCommentBtn}>댓글</button>
             </div>
           </StCommentInput>
         </StCommentContainer>
       </StCommentHeader>
       <StCommentList>
-        <StCommentItem>
-          <StCommentAvatar>
-            <img src="https://placehold.co/40x40" alt="avatar" />
-          </StCommentAvatar>
-          <StCommentDetail>
-            <div>
-              <strong>닉네임</strong>
-              <span>1년 전</span>
-            </div>
-            {/* TODO: 자세히, 간략히 */}
-            <p>
-              막연하게 실천하던 부분을 명쾌하게 정리되어 알아가서 좋아요. 덕분에 내 행동에 대한
-              자신감과 믿음이 생겨나는게 특히 좋았어요. 가끔 고통을 회피하기 위해 집에서 뒹굴면서
-              스마트폰 보는 나를 바꾸고 싶은데~ 휴식이라는 핑계로 집에 있던 나를 밖으로 나갈 합리적
-              이유를 만들어주시네요.
-            </p>
-          </StCommentDetail>
-        </StCommentItem>
-        <StCommentItem>
-          <StCommentAvatar>
-            <img src="https://placehold.co/40x40" alt="avatar" />
-          </StCommentAvatar>
-          <StCommentDetail>
-            <div>
-              <strong>도파민</strong>
-              <span>1일 전</span>
-            </div>
-            <p>
-              선생님 도파민에 올바른 활용법에 대해서 알려주셔서 너무 감사합니다 덕분에 한결 머리가
-              정리되었어요 인생에 대해서 한 수 배워갑니다
-            </p>
-          </StCommentDetail>
-        </StCommentItem>
+        {filtedComments.map((comment) => (
+          <Comment key={comment.id} {...comment} />
+        ))}
       </StCommentList>
     </StWrapper>
   );

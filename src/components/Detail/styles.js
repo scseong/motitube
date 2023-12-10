@@ -8,6 +8,7 @@ export const StDetailWrapper = styled.div`
 
   & > section:first-child {
     flex-basis: 70vw;
+    min-width: 70vw;
   }
 
   & > section:last-child {
