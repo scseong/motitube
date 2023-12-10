@@ -22,7 +22,7 @@ export default function Post() {
   const { value: url, onChange: handleUrlChange } = useInput();
   const { value: title, onChange: handleTitleChange } = useInput();
   const { value: content, onChange: handleContentChange } = useInput();
-  const { value: tag, onChange: handleSelect } = useInput('성공');
+  const { value: tag, onChange: handleSelect } = useInput('success');
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { email, displayName, photoURL } = useSelector((state) => state.authSlice);
