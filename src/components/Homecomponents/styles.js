@@ -34,14 +34,12 @@ export const StPostContainer = styled.div`
   border-radius: 12px;
   transition: all 0.2s;
   flex-wrap: wrap;
+  font-weight: 700;
   gap: 10px;
 
   & div {
     margin: 5px;
     font-size: 15px;
-    &:hover {
-      transform: scale(1.06);
-    }
   }
   h1 {
     text-align: center;
@@ -65,18 +63,23 @@ export const StcardImage = styled.img`
   border: 4px solid yellow;
 `;
 
-export const StContent = styled.p`
+export const StTitle = styled.p`
   display: flex;
-  gap: 12px;
-  align-items: center;
+  justify-content: center;
   overflow: hidden;
   max-width: 300px;
-  gap: 12px;
+  height: 80px;
+  margin-top: 5px;
 `;
 export const Stusername = styled.div`
   display: flex;
   gap: 12px;
   align-items: center;
+  & img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+  }
 `;
 
 export const Strecommendation = styled.button`
@@ -102,4 +105,38 @@ export const Sttimestamp = styled.div`
 export const Styoutube = styled.iframe`
   width: 560px;
   height: 315px;
+`;
+
+//Dashboard.jsx
+export const Stcontainer = styled.div`
+  max-width: 100%;
+  height: 100%;
+  overflow: hidden;
+  & > div {
+    padding: 15px;
+    display: flex;
+  }
+`;
+
+export const Stbutton = styled.button`
+  display: flex;
+  position: relative;
+  margin: 30px auto 30px auto;
+  all: unset;
+  z-index: auto;
+  color: #ffcc00;
+  padding: 10px;
+  border-radius: 10px;
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    background-color: #ffcc00;
+    color: black;
+  }
+`;
+export const StsliderContainer = styled.div`
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+
+  box-shadow: 0 0 10px rgba(188, 115, 20, 0.1);
 `;

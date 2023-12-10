@@ -21,6 +21,10 @@ export const StLogo = styled.img`
   background-position: center;
   width: 200px;
   margin: 10px;
+  cursor: pointer;
+  &:hover {
+    border: solid #ffcc00;
+  }
 `;
 
 export const StBtnInputWrapper = styled.div`
@@ -37,6 +41,10 @@ export const Stbutton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 50px;
+  cursor: pointer;
+  &:hover {
+    border: solid #ffcc00;
+  }
 
   button {
     cursor: pointer;
@@ -66,4 +74,3 @@ export const SearchImage = styled.img`
   width: 20px;
   height: 20px;
 `;
-
