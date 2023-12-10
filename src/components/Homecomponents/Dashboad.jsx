@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { formattedDate } from 'util/date';
 import { useMutation, useQueryClient } from 'react-query';
 import { getPosts } from 'api/post';
+import { Stcontainer, Stbutton, StsliderContainer } from './styles';
 
 export const Dashboad = () => {
   const { data, isLoading, isError } = useQuery('todos', getPosts);
@@ -15,7 +16,7 @@ export const Dashboad = () => {
   const { value: url } = useInput('');
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const TOTAL_SLIDES = 2;
+  const TOTAL_SLIDES = 3;
 
   const slideRef = useRef(null);
 
@@ -93,36 +94,3 @@ export const Dashboad = () => {
     </>
   );
 };
-
-const Stcontainer = styled.div`
-  max-width: 100%;
-  max-height: 100%;
-  overflow: hidden;
-  & > div {
-    padding: 15px;
-    display: flex;
-  }
-`;
-
-const Stbutton = styled.button`
-  display: flex;
-  position: relative;
-  margin: 30px auto 30px auto;
-  all: unset;
-  z-index: auto;
-  color: #ffcc00;
-  padding: 10px;
-  border-radius: 10px;
-  &:hover {
-    transition: all 0.3s ease-in-out;
-    background-color: #ffcc00;
-    color: black;
-  }
-`;
-const StsliderContainer = styled.div`
-  max-width: 100%;
-  max-height: 100%;
-  display: flex;
-
-  box-shadow: 0 0 10px rgba(188, 115, 20, 0.1);
-`;

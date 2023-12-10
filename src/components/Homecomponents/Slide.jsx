@@ -17,11 +17,15 @@ export const Stbox = styled.div`
   overflow-x: auto;
 
   & > div {
-    max-width: 100%;
-    max-height: 100%;
+    width: 40vw;
+    height: 22vw;
     margin: 20px 1px auto 0px;
     background-color: black;
     overflow: hidden;
+    cursor: pointer;
+    &:hover {
+      border: 3px solid black;
+    }
   }
   img {
     max-width: 100%;

@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
-import { StContent, StPostContainer, Stusername, Sttimestamp, StcardImage } from './styles';
+import { StTitle, StPostContainer, Stusername, Sttimestamp, StcardImage } from './styles';
 import { Link, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { useQuery } from 'react-query';
-import { getPosts } from 'api/post';
+import { getSortedPosts } from 'api/post';
 import useInput from 'hooks/useInput';
 import { formattedDate } from 'util/date';
-import { useMutation, useQueryClient } from 'react-query';
+
 import LikeButton from './LikeButton';
 
 const Card = () => {
-  const { data, isLoading, isError } = useQuery('todos', getPosts);
-
-  const navigate = useNavigate();
   const { value: url } = useInput('');
-  const queryClient = useQueryClient();
-
+  const { data, isLoading, isError } = useQuery('todos', () => getSortedPosts('timestamp'));
   const videoId = url.split('=')[1];
   const newPost = {
     url,
@@ -25,16 +21,6 @@ const Card = () => {
     videoId
   };
 
-  const mutationgetPost = useMutation({
-    mutationFn: getPosts,
-    onSuccess: () => {
-      queryClient.invalidateQueries('post');
-    },
-    onError: (error) => {
-      console.log(error);
-    }
-  });
-
   if (isLoading) {
     return <p>로딩 중...</p>;
   }
@@ -42,10 +28,10 @@ const Card = () => {
   if (isError) {
     return <p>데이터를 불러오는 중 오류가 발생했습니다</p>;
   }
-
+  const sortedData = data.slice().sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
   return (
     <StPostContainer>
-      {data.map((item) => (
+      {sortedData.map((item) => (
         <div key={item.id}>
           <div>
             <h1>{item.tag}</h1>
@@ -55,12 +41,12 @@ const Card = () => {
           </div>
           <div>
             <Stusername>
-              {item.avatar}
+              <img src={item.avatar} />
               {item.userName}님
             </Stusername>
           </div>
           <div>
-            <StContent>{item.content}</StContent>
+            <StTitle>{item.title}</StTitle>
           </div>
 
           <Sttimestamp>{item.timestamp}</Sttimestamp>
@@ -73,4 +59,3 @@ const Card = () => {
 };
 
 export default Card;
-
