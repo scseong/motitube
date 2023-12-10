@@ -1,21 +1,17 @@
-import { useState, useEffect } from 'react';
 import { addComment, getComments } from '../api/comment';
+import { useQueryClient, useQuery, useMutation } from 'react-query';
 
 export default function useComment() {
-  const [comments, setComments] = useState([]);
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const allCommnets = await getComments();
-      setComments(allCommnets);
-    };
+  const { data: comments = [] } = useQuery(['comments'], getComments);
 
-    fetchData();
-  }, []);
-
-  const createComment = async (newComment) => {
-    await addComment({ newComment });
-  };
+  const createComment = useMutation({
+    mutationFn: addComment,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['comments'] });
+    }
+  });
 
   return { comments, createComment };
 }
