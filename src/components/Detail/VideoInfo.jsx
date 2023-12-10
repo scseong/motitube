@@ -2,10 +2,7 @@ import React from 'react';
 import YoutubeChannel from 'components/Channel/YoutubeChannel';
 import { StMovieInfo } from './styles';
 
-export default function VideoInfo({ videoInfo }) {
-  const { snippet } = videoInfo;
-  const { channelId, title, description, channelTitle } = snippet;
-
+export default function VideoInfo({ channelId, channelTitle, title, description }) {
   return (
     <StMovieInfo>
       <h2>{title}</h2>
