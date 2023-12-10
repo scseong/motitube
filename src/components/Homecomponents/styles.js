@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-// Slicebar.jsx
 export const Stvideoslider = styled.div`
   padding: 60px;
   background-color: #f1cc13;
@@ -13,9 +12,9 @@ export const Stvideoslider = styled.div`
 export const StNaviBox = styled.div`
   display: flex;
   margin: 2px 30px 2px auto;
-  padding: 130px;
-  max-width: 40%;
-  max-height: 50%;
+  padding: 50px;
+  max-width: 100%;
+  max-height: 100%;
   background-color: #ffcc00;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -24,16 +23,15 @@ export const StNaviBox = styled.div`
 export const StPostContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
   color: white;
-  padding: 12px;
+  padding: 40px;
   margin-top: 200px;
   border: 1px solid white;
   flex-direction: row;
   border-radius: 12px;
   transition: all 0.2s;
   flex-wrap: wrap;
-  gap: 100px;
+  gap: 10px;
   &:hover {
     transform: scale(1.02);
   }
@@ -79,6 +77,6 @@ export const Sttimestamp = styled.div`
 `;
 
 export const Styoutube = styled.iframe`
-  width: 560;
-  height: 315;
+  width: 560px;
+  height: 315px;
 `;
