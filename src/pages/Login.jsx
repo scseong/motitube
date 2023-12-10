@@ -1,5 +1,11 @@
 import React from 'react';
+import Signin from 'components/Register/Signin';
 
 export default function Login() {
-  return <div>Login</div>;
+  return (
+    <>
+      <Signin />
+    </>
+  );
 }
+
