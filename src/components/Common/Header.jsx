@@ -12,8 +12,10 @@ import logo from 'assets/images/logo.png';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/modules/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.authSlice.isLogin);
 
@@ -36,6 +38,7 @@ export default function Header() {
                 onClick={() => {
                   alert('정말 로그아웃 하시겠습니까?');
                   dispatch(logout());
+                  navigate('/');
                 }}
               >
                 로그아웃
@@ -60,3 +63,4 @@ export default function Header() {
     </StHeader>
   );
 }
+
