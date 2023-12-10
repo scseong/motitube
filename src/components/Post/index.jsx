@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from 'react-query';
 import { addPost } from 'api/post';
+import { useSelector } from 'react-redux';
 
 export default function Post() {
   const { value: url, onChange: handleUrlChange } = useInput();
@@ -24,6 +25,7 @@ export default function Post() {
   const { value: tag, onChange: handleSelect } = useInput('성공');
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { email, displayName, photoURL } = useSelector((state) => state.authSlice);
 
   const selectList = [
     { value: 'success', name: '성공' },
@@ -61,10 +63,10 @@ export default function Post() {
       tag,
       id: uuidv4(),
       timestamp: formattedDate(Date.now()),
-      avatar: '',
+      avatar: photoURL,
       likes: 0,
-      userId: 'qwer123',
-      userName: '우공이산',
+      userId: email,
+      userName: displayName,
       thumbnail: `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
       videoId
     };
@@ -113,3 +115,4 @@ export default function Post() {
     </StDiv>
   );
 }
+
